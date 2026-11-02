@@ -211,3 +211,4 @@ export const BlogDetail = () => {
 };
 
 export default BlogDetail;
+

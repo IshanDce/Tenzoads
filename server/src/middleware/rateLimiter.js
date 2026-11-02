@@ -21,3 +21,4 @@ export const newsletterLimiter = rateLimit({
     message: 'Too many subscription requests from this IP. Please try again later.',
   },
 });
+

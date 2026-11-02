@@ -71,3 +71,4 @@ export const PlaceholderImage16x9 = ({
 };
 
 export default PlaceholderImage16x9;
+

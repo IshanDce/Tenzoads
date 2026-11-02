@@ -86,3 +86,4 @@ export const PhoneMockup = ({ className = '', title = 'Bloom Pay' }) => {
 };
 
 export default PhoneMockup;
+

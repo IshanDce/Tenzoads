@@ -105,3 +105,4 @@ export const DashboardMockup = ({ className = '', dark = false }) => {
 };
 
 export default DashboardMockup;
+

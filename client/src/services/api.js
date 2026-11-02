@@ -48,3 +48,4 @@ export const subscribeNewsletter = async (email) => {
   const response = await apiClient.post('/newsletter', { email });
   return response.data;
 };
+

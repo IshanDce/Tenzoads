@@ -73,3 +73,4 @@ export const BrowserMockup = ({ className = '', title = 'northstudio.design' }) 
 };
 
 export default BrowserMockup;
+

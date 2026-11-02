@@ -37,3 +37,4 @@ export const FilterPills = ({
 };
 
 export default FilterPills;
+

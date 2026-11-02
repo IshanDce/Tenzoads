@@ -65,3 +65,4 @@ export const FaqAccordion = ({ items = [], allowMultiple = false }) => {
 };
 
 export default FaqAccordion;
+

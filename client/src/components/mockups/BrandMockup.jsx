@@ -49,3 +49,4 @@ export const BrandMockup = ({ className = '', title = 'Rooted Organics' }) => {
 };
 
 export default BrandMockup;
+

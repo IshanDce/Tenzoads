@@ -51,3 +51,4 @@ export const HeroIllustration = ({ className = '' }) => {
 };
 
 export default HeroIllustration;
+

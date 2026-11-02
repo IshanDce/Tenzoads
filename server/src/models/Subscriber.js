@@ -20,3 +20,4 @@ const subscriberSchema = new mongoose.Schema(
 );
 
 export const Subscriber = mongoose.model('Subscriber', subscriberSchema);
+

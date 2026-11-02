@@ -60,3 +60,4 @@ export const Logo = ({ className = '', inverted = false, showTagline = false }) 
 };
 
 export default Logo;
+

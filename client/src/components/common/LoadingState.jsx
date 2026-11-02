@@ -13,3 +13,4 @@ export const LoadingState = ({ message = 'Loading content...' }) => {
 };
 
 export default LoadingState;
+

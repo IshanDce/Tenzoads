@@ -75,3 +75,4 @@ export const ChatMockup = ({ className = '', title = 'Nova AI Assistant' }) => {
 };
 
 export default ChatMockup;
+
