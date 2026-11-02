@@ -1,0 +1,36 @@
+import rateLimit from 'express-rate-limit';
+
+export const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message:
+      'Too many quote requests from this IP. Please try again after 15 minutes or reach us directly at hello@yourdomain.com.',
+  },
+});
+
+export const newsletterLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 15,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: 'Too many subscription requests from this IP. Please try again later.',
+  },
+});
+
+export const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: process.env.NODE_ENV === 'production' ? 5 : 50,
+  skipSuccessfulRequests: true,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: 'Too many login attempts. Please try again after 15 minutes.',
+  },
+});

@@ -1,18 +1,19 @@
 {
-  "name": "tenzoads-workspace",
+  "name": "tenzoads-root",
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
-    "seed": "cd server && npm run seed",
-    "dev:server": "cd server && npm run dev",
-    "dev:client": "cd client && npm run dev",
-    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run dev:server\" \"npm run dev:client\"",
-    "build:client": "cd client && npm run build",
-    "build": "npm run build:client"
+    "install:all": "npm install && cd BACKEND && npm install && cd ../WEBSITE && npm install && cd ../ADMIN && npm install",
+    "seed": "cd BACKEND && npm run seed",
+    "dev:backend": "cd BACKEND && npm run dev",
+    "dev:website": "cd WEBSITE && npm run dev",
+    "dev:admin": "cd ADMIN && npm run dev",
+    "dev": "concurrently -n \"BACKEND,WEBSITE,ADMIN\" -c \"blue,green,magenta\" \"npm run dev:backend\" \"npm run dev:website\" \"npm run dev:admin\"",
+    "build:website": "cd WEBSITE && npm run build",
+    "build:admin": "cd ADMIN && npm run build",
+    "build": "npm run build:website && npm run build:admin"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
   }
 }
-
