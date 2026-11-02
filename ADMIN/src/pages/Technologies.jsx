@@ -300,3 +300,4 @@ export const Technologies = () => {
 };
 
 export default Technologies;
+

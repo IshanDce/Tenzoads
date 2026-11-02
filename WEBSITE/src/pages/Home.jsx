@@ -163,14 +163,16 @@ export const Home = () => {
           </span>
 
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-4xl mx-auto">
-            {technologies.map((tech) => (
-              <span
-                key={tech}
-                className="bg-amber hover:bg-amber-hover text-ink text-xs sm:text-sm font-bold px-5 py-2 rounded-full shadow-sm transition-all duration-200 cursor-default hover:scale-105"
-              >
-                {tech}
-              </span>
-            ))}
+              {
+                technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="bg-amber hover:bg-amber-hover text-ink text-xs sm:text-sm font-bold px-5 py-2 rounded-full shadow-sm transition-all duration-200 cursor-default hover:scale-105"
+                  >
+                    {tech}
+                  </span>
+                ))
+              }
           </div>
         </div>
       </section>
@@ -188,9 +190,11 @@ export const Home = () => {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {services.map((service) => (
-              <ServiceCard key={service._id || service.id || service.title} service={service} />
-            ))}
+            {
+                services.map((service) => (
+                  <ServiceCard key={service._id || service.id || service.title} service={service} />
+                ))
+              }
           </div>
         </div>
       </section>
@@ -228,23 +232,25 @@ export const Home = () => {
 
             {/* Right 2x2 Grid of dark cards */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {whyUsItems.map((item) => {
-                const IconComponent = whyIcons[item.icon] || Box;
-                return (
-                  <div
-                    key={item.title}
-                    className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 hover:border-amber/50 transition-all duration-300"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-amber text-ink flex items-center justify-center font-bold mb-4 shadow-sm">
-                      <IconComponent className="w-5 h-5 stroke-[2]" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                    <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                );
-              })}
+                {
+                  whyUsItems.map((item) => {
+                    const IconComponent = whyIcons[item.icon] || Box;
+                    return (
+                      <div
+                        key={item.title}
+                        className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 hover:border-amber/50 transition-all duration-300"
+                      >
+                        <div className="w-10 h-10 rounded-xl bg-amber text-ink flex items-center justify-center font-bold mb-4 shadow-sm">
+                          <IconComponent className="w-5 h-5 stroke-[2]" />
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                        <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    );
+                  })
+                }
             </div>
           </div>
         </div>
@@ -260,22 +266,24 @@ export const Home = () => {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            {steps.map((step) => (
-              <div
-                key={step.number || step.order}
-                className="bg-cream-light border border-borderCream rounded-2xl p-6 sm:p-7 relative transition-all duration-300 hover:shadow-soft hover:border-amber-300"
-              >
-                {/* Amber number circle */}
-                <div className="w-10 h-10 rounded-full bg-amber text-ink font-extrabold text-base flex items-center justify-center mb-5 shadow-sm">
-                  {step.number || step.order}
-                </div>
+              {
+                steps.map((step) => (
+                  <div
+                    key={step.number || step.order}
+                    className="bg-cream-light border border-borderCream rounded-2xl p-6 sm:p-7 relative transition-all duration-300 hover:shadow-soft hover:border-amber-300"
+                  >
+                    {/* Amber number circle */}
+                    <div className="w-10 h-10 rounded-full bg-amber text-ink font-extrabold text-base flex items-center justify-center mb-5 shadow-sm">
+                      {step.number || step.order}
+                    </div>
 
-                <h3 className="text-xl font-extrabold text-ink tracking-tight mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-muted leading-relaxed">{step.description}</p>
-              </div>
-            ))}
+                    <h3 className="text-xl font-extrabold text-ink tracking-tight mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-muted leading-relaxed">{step.description}</p>
+                  </div>
+                ))
+              }
           </div>
         </div>
       </section>

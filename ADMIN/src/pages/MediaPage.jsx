@@ -247,3 +247,4 @@ export const MediaPage = () => {
 };
 
 export default MediaPage;
+

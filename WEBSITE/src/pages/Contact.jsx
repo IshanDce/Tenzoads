@@ -195,9 +195,8 @@ export const Contact = () => {
                     type="text"
                     {...register('name')}
                     placeholder="Your name"
-                    className={`w-full px-4 py-3 rounded-xl border text-sm text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber ${
-                      errors.name ? 'border-red-500 bg-red-50/20' : 'border-borderCream bg-white'
-                    }`}
+                    className={`w-full px-4 py-3 rounded-xl border text-sm text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber ${errors.name ? 'border-red-500 bg-red-50/20' : 'border-borderCream bg-white'
+                      }`}
                   />
                   {errors.name && (
                     <span className="text-xs text-red-600 font-medium mt-1 block">
@@ -215,9 +214,8 @@ export const Contact = () => {
                     type="email"
                     {...register('email')}
                     placeholder="you@company.com"
-                    className={`w-full px-4 py-3 rounded-xl border text-sm text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber ${
-                      errors.email ? 'border-red-500 bg-red-50/20' : 'border-borderCream bg-white'
-                    }`}
+                    className={`w-full px-4 py-3 rounded-xl border text-sm text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber ${errors.email ? 'border-red-500 bg-red-50/20' : 'border-borderCream bg-white'
+                      }`}
                   />
                   {errors.email && (
                     <span className="text-xs text-red-600 font-medium mt-1 block">
@@ -284,9 +282,8 @@ export const Contact = () => {
                     rows={4}
                     {...register('message')}
                     placeholder="What are you looking to build?"
-                    className={`w-full px-4 py-3 rounded-xl border text-sm text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber ${
-                      errors.message ? 'border-red-500 bg-red-50/20' : 'border-borderCream bg-white'
-                    }`}
+                    className={`w-full px-4 py-3 rounded-xl border text-sm text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber ${errors.message ? 'border-red-500 bg-red-50/20' : 'border-borderCream bg-white'
+                      }`}
                   />
                   {errors.message && (
                     <span className="text-xs text-red-600 font-medium mt-1 block">

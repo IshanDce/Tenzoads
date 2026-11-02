@@ -219,3 +219,4 @@ export const RichTextEditor = ({
 };
 
 export default RichTextEditor;
+
