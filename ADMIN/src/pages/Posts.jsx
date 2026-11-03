@@ -180,7 +180,8 @@ export const Posts = () => {
                           <img
                             src={p.coverImage}
                             alt={p.title}
-                            className="w-12 h-8 rounded-lg object-cover border border-borderCream bg-neutral-100 flex-shrink-0"
+                            className="w-12 h-8 rounded-lg object-contain p-0.5 border border-borderCream bg-[#FBF7EE] flex-shrink-0"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
                           />
                         ) : (
                           <div className="w-12 h-8 rounded-lg bg-cream border border-borderCream flex items-center justify-center text-[10px] font-bold text-amber-700 flex-shrink-0">

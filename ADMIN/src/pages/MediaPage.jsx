@@ -42,9 +42,7 @@ export const MediaPage = () => {
 
     setUploading(true);
     try {
-      const res = await api.post('/admin/media', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const res = await api.post('/admin/media', formData);
       if (res.data?.success) {
         queryClient.invalidateQueries(['admin-media']);
         toast.success('Media uploaded successfully');
@@ -179,7 +177,7 @@ export const MediaPage = () => {
                     className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = 'https://via.placeholder.com/150?text=Preview';
+                      e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'><rect fill='%23fbf7ee' width='150' height='150'/><text fill='%23999' font-family='sans-serif' font-size='12' dy='5' font-weight='bold' x='50%' y='50%' text-anchor='middle'>Image Preview</text></svg>";
                     }}
                   />
                 </div>

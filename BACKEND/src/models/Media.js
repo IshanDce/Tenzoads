@@ -10,6 +10,15 @@ const mediaSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    fileId: {
+      type: String,
+      default: '',
+    },
+    provider: {
+      type: String,
+      enum: ['imagekit', 'local'],
+      default: 'local',
+    },
     mimeType: {
       type: String,
       default: '',
@@ -29,4 +38,3 @@ const mediaSchema = new mongoose.Schema(
 );
 
 export const Media = mongoose.model('Media', mediaSchema);
-

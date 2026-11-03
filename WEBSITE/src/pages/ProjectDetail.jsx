@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
-import { getProjectBySlug } from '../services/api';
+import { getProjectBySlug, formatImageUrl } from '../services/api';
 import LoadingState from '../components/common/LoadingState';
 import ProjectCard from '../components/cards/ProjectCard';
 import CtaBand from '../components/common/CtaBand';
@@ -18,11 +18,13 @@ export const ProjectDetail = () => {
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     const fetchProject = async () => {
       setLoading(true);
       setError(null);
+      setImgError(false);
       try {
         const res = await getProjectBySlug(slug);
         if (res?.data) {
@@ -60,6 +62,9 @@ export const ProjectDetail = () => {
       </div>
     );
   }
+
+  const formattedThumbnail = formatImageUrl(project.thumbnail);
+  const showRealImage = Boolean(formattedThumbnail && !imgError);
 
   const renderMockup = () => {
     switch (project.mockupType) {
@@ -120,8 +125,24 @@ export const ProjectDetail = () => {
       <section className="py-16 md:py-24 bg-white border-b border-borderCream">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           {/* Visual Showcase Card */}
-          <div className="bg-cream-light rounded-3xl p-6 sm:p-12 border border-borderCream flex items-center justify-center overflow-hidden">
-            {renderMockup()}
+          <div className="bg-[#FBF7EE] rounded-3xl p-4 sm:p-10 border border-borderCream flex items-center justify-center overflow-hidden relative min-h-[320px]">
+            {showRealImage ? (
+              <div className="relative w-full max-w-4xl flex items-center justify-center">
+                {/* Soft ambient blur backdrop */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-20 filter blur-xl scale-105 pointer-events-none"
+                  style={{ backgroundImage: `url(${formattedThumbnail})` }}
+                />
+                <img
+                  src={formattedThumbnail}
+                  alt={project.title}
+                  className="relative z-10 max-h-[560px] max-w-full w-auto h-auto object-contain rounded-2xl shadow-xl border border-borderCream/80"
+                  onError={() => setImgError(true)}
+                />
+              </div>
+            ) : (
+              renderMockup()
+            )}
           </div>
 
           {/* Details Grid */}
@@ -166,51 +187,59 @@ export const ProjectDetail = () => {
 
             {/* Sidebar Results */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-cream-light border border-borderCream rounded-2xl p-6 sm:p-8 space-y-6">
-                <h3 className="text-lg font-extrabold text-ink">Measurable Results</h3>
-                <ul className="space-y-3">
-                  {project.results?.map((res, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm font-semibold text-neutral-800">
-                      <span className="w-2 h-2 rounded-full bg-amber mt-2 flex-shrink-0" />
-                      <span>{res}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="p-8 rounded-3xl bg-neutral-900 text-white space-y-6">
+                <h3 className="text-xl font-extrabold text-amber tracking-tight">Key Outcomes</h3>
+                {project.results?.length > 0 ? (
+                  <div className="space-y-4">
+                    {project.results.map((res, i) => (
+                      <div key={i} className="border-b border-neutral-800 pb-4 last:border-0 last:pb-0">
+                        <div className="text-2xl font-black text-white">{res}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-neutral-400">
+                    High engagement and scalability achieved under peak production loads.
+                  </p>
+                )}
 
-                <div className="pt-4 border-t border-borderCream">
-                  <Link
-                    to="/contact"
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber hover:bg-amber-hover text-ink rounded-full font-bold text-sm transition-all duration-200 shadow-sm"
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full py-3 bg-amber text-ink rounded-full font-bold text-sm hover:bg-amber-hover transition-colors"
                   >
-                    <span>Start a similar project</span>
+                    <span>View Live Product</span>
                     <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
+                  </a>
+                )}
               </div>
             </div>
           </div>
-
-          {/* Related Projects */}
-          {related.length > 0 && (
-            <div className="pt-16 border-t border-borderCream space-y-8">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-ink">
-                Related Work in {project.category}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                {related.map((relProj) => (
-                  <ProjectCard key={relProj.slug} project={relProj} />
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
-      {/* CTA Band */}
+      {/* Related Projects */}
+      {related.length > 0 && (
+        <section className="py-20 bg-cream-light/40 border-b border-borderCream">
+          <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+              More Case Studies
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {related.map((relProj) => (
+                <ProjectCard key={relProj._id || relProj.slug} project={relProj} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Global CTA */}
       <CtaBand />
     </>
   );
 };
 
 export default ProjectDetail;
-

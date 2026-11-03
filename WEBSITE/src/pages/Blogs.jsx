@@ -5,7 +5,7 @@ import FilterPills from '../components/common/FilterPills';
 import PostCard from '../components/cards/PostCard';
 import PlaceholderImage16x9 from '../components/mockups/PlaceholderImage16x9';
 import LoadingState from '../components/common/LoadingState';
-import { getPosts, getFeaturedPost, subscribeNewsletter } from '../services/api';
+import { getPosts, getFeaturedPost, subscribeNewsletter, formatImageUrl } from '../services/api';
 import { usePageContent } from '../hooks/useSiteData';
 
 const filterCategories = [
@@ -30,6 +30,7 @@ export const Blogs = () => {
   });
 
   const [featuredPost, setFeaturedPost] = useState(null);
+  const [featuredImgError, setFeaturedImgError] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -174,12 +175,31 @@ export const Blogs = () => {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-4 sm:p-6 lg:p-8">
                 {/* 16:9 Image Placeholder Left */}
                 <div className="lg:col-span-6">
-                  <Link to={`/blogs/${featuredPost.slug}`}>
-                    <PlaceholderImage16x9
-                      label="FEATURED IMAGE 16:9"
-                      badge={featuredPost.categoryDisplay || 'FEATURED'}
-                      className="rounded-2xl shadow-inner"
-                    />
+                  <Link to={`/blogs/${featuredPost.slug}`} className="block overflow-hidden rounded-2xl group">
+                    {formatImageUrl(featuredPost.coverImage) && !featuredImgError ? (
+                      <div className="relative aspect-video w-full overflow-hidden bg-[#FBF7EE] rounded-2xl shadow-inner flex items-center justify-center p-3 border border-borderCream/70">
+                        <div
+                          className="absolute inset-0 bg-cover bg-center opacity-15 filter blur-md scale-110 pointer-events-none"
+                          style={{ backgroundImage: `url(${formatImageUrl(featuredPost.coverImage)})` }}
+                        />
+                        <img
+                          src={formatImageUrl(featuredPost.coverImage)}
+                          alt={featuredPost.title}
+                          className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain rounded-xl drop-shadow-sm transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                          onError={() => setFeaturedImgError(true)}
+                        />
+                        <span className="absolute top-3 left-3 z-20 bg-amber text-ink text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow-sm">
+                          {featuredPost.categoryDisplay || 'FEATURED'}
+                        </span>
+                      </div>
+                    ) : (
+                      <PlaceholderImage16x9
+                        label="FEATURED IMAGE 16:9"
+                        badge={featuredPost.categoryDisplay || 'FEATURED'}
+                        className="rounded-2xl shadow-inner"
+                      />
+                    )}
                   </Link>
                 </div>
 

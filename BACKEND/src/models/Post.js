@@ -17,7 +17,16 @@ const postSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ['Mobile Apps', 'Websites', 'AI Solutions', 'UI/UX Design', 'Graphic Design'],
+      enum: [
+        'Mobile Apps',
+        'Websites',
+        'Web Development',
+        'AI Solutions',
+        'AI Integration',
+        'UI/UX Design',
+        'Graphic Design',
+        'Technology',
+      ],
     },
     categoryDisplay: {
       type: String,
@@ -60,9 +69,9 @@ const postSchema = new mongoose.Schema(
       enum: ['draft', 'published'],
       default: 'published',
     },
-    publishedAt: {
-      type: Date,
-      default: Date.now,
+    tags: {
+      type: [String],
+      default: [],
     },
     seoTitle: {
       type: String,
@@ -72,15 +81,7 @@ const postSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
-    tags: {
-      type: [String],
-      default: [],
-    },
-    order: {
-      type: Number,
-      default: 0,
-    },
-    sortOrder: {
+    viewCount: {
       type: Number,
       default: 0,
     },
@@ -90,11 +91,10 @@ const postSchema = new mongoose.Schema(
   }
 );
 
+// Auto set categoryDisplay if empty
 postSchema.pre('save', function (next) {
-  if (this.order !== undefined && this.sortOrder === undefined) {
-    this.sortOrder = this.order;
-  } else if (this.sortOrder !== undefined && this.order === undefined) {
-    this.order = this.sortOrder;
+  if (!this.categoryDisplay && this.category) {
+    this.categoryDisplay = this.category.toUpperCase();
   }
   next();
 });

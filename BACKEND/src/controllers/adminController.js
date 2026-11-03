@@ -14,6 +14,7 @@ import { Admin } from '../models/Admin.js';
 import { clearCache } from '../utils/cache.js';
 import path from 'path';
 import fs from 'fs';
+import { isImageKitConfigured, uploadToImageKit, deleteFromImageKit } from '../config/imagekit.js';
 
 // ==========================================
 // 1. DASHBOARD STATS
@@ -769,13 +770,55 @@ export const uploadMediaFile = async (req, res, next) => {
       return res.status(400).json({ success: false, message: 'No file uploaded' });
     }
 
+    const ext = path.extname(req.file.originalname).toLowerCase();
+    const cleanBase = path.basename(req.file.originalname, ext).replace(/[^a-zA-Z0-9_-]/g, '-').toLowerCase();
+    const cleanFileName = `${Date.now()}-${cleanBase}${ext}`;
+
+    // 1. If ImageKit is configured, upload directly to ImageKit cloud
+    if (isImageKitConfigured()) {
+      try {
+        const ikRes = await uploadToImageKit({
+          file: req.file.buffer,
+          fileName: cleanFileName,
+          folder: '/tenzoads',
+        });
+
+        const media = await Media.create({
+          filename: ikRes.name || cleanFileName,
+          url: ikRes.url,
+          fileId: ikRes.fileId,
+          provider: 'imagekit',
+          mimeType: req.file.mimetype,
+          size: ikRes.size || req.file.size,
+          uploadedBy: req.admin?.email || 'admin',
+        });
+
+        return res.status(201).json({
+          success: true,
+          message: 'File uploaded successfully to ImageKit',
+          data: media,
+        });
+      } catch (ikErr) {
+        console.error('[ImageKit] Upload failed, attempting local fallback:', ikErr.message);
+      }
+    }
+
+    // 2. Fallback: Save to local uploads directory
+    const uploadDir = path.resolve(process.cwd(), process.env.UPLOAD_DIR || 'uploads');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    const localPath = path.join(uploadDir, cleanFileName);
+    fs.writeFileSync(localPath, req.file.buffer);
+
     const host = req.get('host');
     const protocol = req.protocol;
-    const fileUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
+    const fileUrl = `${protocol}://${host}/uploads/${cleanFileName}`;
 
     const media = await Media.create({
-      filename: req.file.filename,
+      filename: cleanFileName,
       url: fileUrl,
+      provider: 'local',
       mimeType: req.file.mimetype,
       size: req.file.size,
       uploadedBy: req.admin?.email || 'admin',
@@ -823,7 +866,12 @@ export const deleteMedia = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Media not found' });
     }
 
-    // Attempt to remove physical file if in local uploads
+    // If ImageKit fileId is present, delete from ImageKit
+    if (media.fileId) {
+      await deleteFromImageKit(media.fileId);
+    }
+
+    // Also remove local file if it exists
     const localPath = path.resolve(process.cwd(), process.env.UPLOAD_DIR || 'uploads', media.filename);
     if (fs.existsSync(localPath)) {
       fs.unlinkSync(localPath);

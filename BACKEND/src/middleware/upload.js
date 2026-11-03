@@ -1,26 +1,7 @@
 import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
 
-const uploadDir = path.resolve(process.cwd(), process.env.UPLOAD_DIR || 'uploads');
-
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    const cleanName = path
-      .basename(file.originalname, ext)
-      .replace(/[^a-zA-Z0-9_-]/g, '-')
-      .toLowerCase();
-    cb(null, `${Date.now()}-${cleanName}${ext}`);
-  },
-});
+// Use memoryStorage so the file buffer is directly available for ImageKit or local fallback
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const allowedMimes = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/gif'];
@@ -38,4 +19,3 @@ export const upload = multer({
   },
   fileFilter,
 });
-
