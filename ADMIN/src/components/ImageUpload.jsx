@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { UploadCloud, X, Link, Image as ImageIcon, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import api from '../lib/api';
+import api, { formatImageUrl } from '../lib/api';
 
 export const ImageUpload = ({
   value = '',
@@ -12,7 +12,12 @@ export const ImageUpload = ({
   const [uploading, setUploading] = useState(false);
   const [showUrlInput, setShowUrlInput] = useState(false);
   const [manualUrl, setManualUrl] = useState('');
+  const [imgError, setImgError] = useState(false);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    setImgError(false);
+  }, [value]);
 
   const handleFileUpload = async (e) => {
     const file = e.target.files?.[0];
@@ -27,10 +32,9 @@ export const ImageUpload = ({
     formData.append('file', file);
 
     setUploading(true);
+    setImgError(false);
     try {
-      const res = await api.post('/admin/media', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const res = await api.post('/admin/media', formData);
       if (res.data?.success && res.data.data?.url) {
         onChange(res.data.data.url);
         toast.success('Image uploaded successfully');
@@ -51,8 +55,11 @@ export const ImageUpload = ({
       onChange(manualUrl.trim());
       setManualUrl('');
       setShowUrlInput(false);
+      setImgError(false);
     }
   };
+
+  const formattedUrl = formatImageUrl(value);
 
   return (
     <div className="space-y-2">
@@ -88,17 +95,30 @@ export const ImageUpload = ({
           </button>
         </div>
       ) : value ? (
-        <div className="relative group rounded-2xl overflow-hidden border border-borderCream bg-neutral-100 max-h-56 flex items-center justify-center">
-          <img
-            src={value}
-            alt="Preview"
-            className="max-h-56 w-full object-contain bg-[#FBF7EE]"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = 'https://via.placeholder.com/400x200?text=Image+Unavailable';
-            }}
-          />
-          <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+        <div className="relative group rounded-2xl overflow-hidden border border-borderCream bg-[#FBF7EE] h-60 w-full flex items-center justify-center p-3 select-none">
+          {imgError ? (
+            <div className="flex flex-col items-center justify-center p-6 text-center text-neutral-400">
+              <ImageIcon className="w-8 h-8 mb-2 text-neutral-300" />
+              <p className="text-xs font-semibold text-neutral-600">Image preview unavailable</p>
+              <p className="text-[10px] text-neutral-400 break-all max-w-xs mt-1">{value}</p>
+            </div>
+          ) : (
+            <>
+              {/* Soft ambient blur backdrop */}
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-15 filter blur-md scale-105 pointer-events-none"
+                style={{ backgroundImage: `url(${formattedUrl})` }}
+              />
+              <img
+                src={formattedUrl}
+                alt="Preview"
+                className="relative z-10 max-h-52 max-w-full w-auto h-auto object-contain rounded-lg drop-shadow-sm"
+                onError={() => setImgError(true)}
+              />
+            </>
+          )}
+
+          <div className="absolute inset-0 z-20 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
@@ -108,7 +128,10 @@ export const ImageUpload = ({
             </button>
             <button
               type="button"
-              onClick={() => onChange('')}
+              onClick={() => {
+                onChange('');
+                setImgError(false);
+              }}
               className="p-2 bg-red-600 text-white rounded-xl shadow-md hover:bg-red-700 transition-colors text-xs font-semibold flex items-center gap-1"
             >
               <X className="w-4 h-4" /> Remove
@@ -123,7 +146,7 @@ export const ImageUpload = ({
           {uploading ? (
             <div className="flex flex-col items-center gap-2 text-amber-600 py-4">
               <Loader2 className="w-8 h-8 animate-spin" />
-              <p className="text-xs font-semibold">Uploading image...</p>
+              <p className="text-xs font-semibold">Uploading to ImageKit...</p>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2 py-2">
@@ -151,4 +174,3 @@ export const ImageUpload = ({
 };
 
 export default ImageUpload;
-

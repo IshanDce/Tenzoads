@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlaceholderImage16x9 from '../mockups/PlaceholderImage16x9';
+import { formatImageUrl } from '../../services/api';
 
 export const PostCard = ({ post }) => {
+  const [imgError, setImgError] = useState(false);
+  const formattedCover = formatImageUrl(post.coverImage);
+  const showCover = Boolean(formattedCover && !imgError);
+
   return (
     <article className="group bg-white rounded-2xl border border-borderCream overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-soft-hover hover:border-amber-300 hover:-translate-y-1">
       <div>
-        <Link to={`/blogs/${post.slug}`} className="block">
-          <PlaceholderImage16x9
-            label="IMAGE 16:9"
-            badge={post.categoryDisplay || post.category}
-          />
+        <Link to={`/blogs/${post.slug}`} className="block overflow-hidden">
+          {showCover ? (
+            <div className="relative aspect-video w-full overflow-hidden bg-[#FBF7EE] border-b border-borderCream/60 flex items-center justify-center p-2.5">
+              {/* Subtle ambient backdrop for edge filling */}
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-15 filter blur-md scale-110 pointer-events-none"
+                style={{ backgroundImage: `url(${formattedCover})` }}
+              />
+              <img
+                src={formattedCover}
+                alt={post.title}
+                className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain rounded-lg drop-shadow-sm transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                onError={() => setImgError(true)}
+              />
+              <span className="absolute top-3 left-3 z-20 bg-amber text-ink text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm">
+                {post.categoryDisplay || post.category}
+              </span>
+            </div>
+          ) : (
+            <PlaceholderImage16x9
+              label="IMAGE 16:9"
+              badge={post.categoryDisplay || post.category}
+            />
+          )}
         </Link>
 
         <div className="p-6">
@@ -45,4 +70,3 @@ export const PostCard = ({ post }) => {
 };
 
 export default PostCard;
-

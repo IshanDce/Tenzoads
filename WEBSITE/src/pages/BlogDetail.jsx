@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Clock, Calendar, User, Share2, Check } from 'lucide-react';
-import { getPostBySlug } from '../services/api';
+import { getPostBySlug, formatImageUrl } from '../services/api';
 import LoadingState from '../components/common/LoadingState';
 import PostCard from '../components/cards/PostCard';
 import PlaceholderImage16x9 from '../components/mockups/PlaceholderImage16x9';
@@ -15,6 +15,7 @@ export const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -24,6 +25,7 @@ export const BlogDetail = () => {
         const res = await getPostBySlug(slug);
         if (res?.data) {
           setPost(res.data);
+          setImgError(false);
           setRelated(res.related || []);
         } else {
           setError('Article not found');
@@ -130,12 +132,27 @@ export const BlogDetail = () => {
       {/* Main Content Body */}
       <article className="py-16 md:py-20 bg-white border-b border-borderCream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          {/* Header 16:9 Image Box */}
-          <PlaceholderImage16x9
-            label="ARTICLE ILLUSTRATION 16:9"
-            badge={post.categoryDisplay || post.category}
-            className="rounded-3xl shadow-soft"
-          />
+          {/* Header Image Box */}
+          {formatImageUrl(post.coverImage) && !imgError ? (
+            <div className="relative w-full max-h-[520px] overflow-hidden rounded-3xl shadow-soft border border-borderCream bg-[#FBF7EE] flex items-center justify-center p-3 sm:p-6">
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-20 filter blur-xl scale-105 pointer-events-none"
+                style={{ backgroundImage: `url(${formatImageUrl(post.coverImage)})` }}
+              />
+              <img
+                src={formatImageUrl(post.coverImage)}
+                alt={post.title}
+                className="relative z-10 max-h-[480px] max-w-full w-auto h-auto object-contain rounded-2xl drop-shadow-md"
+                onError={() => setImgError(true)}
+              />
+            </div>
+          ) : (
+            <PlaceholderImage16x9
+              label="ARTICLE ILLUSTRATION 16:9"
+              badge={post.categoryDisplay || post.category}
+              className="rounded-3xl shadow-soft"
+            />
+          )}
 
           {/* Article formatted content */}
           <div className="prose prose-lg max-w-none text-neutral-800 space-y-6 leading-relaxed">

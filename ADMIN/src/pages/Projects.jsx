@@ -183,7 +183,8 @@ export const Projects = () => {
                           <img
                             src={p.thumbnail}
                             alt={p.title}
-                            className="w-10 h-10 rounded-lg object-cover border border-borderCream bg-neutral-100 flex-shrink-0"
+                            className="w-10 h-10 rounded-lg object-contain p-0.5 border border-borderCream bg-[#FBF7EE] flex-shrink-0"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
                           />
                         ) : (
                           <div className="w-10 h-10 rounded-lg bg-cream flex items-center justify-center text-amber-700 font-bold flex-shrink-0">

@@ -19,6 +19,7 @@ import {
   Link2,
   Unlink,
   Minus,
+  Image as ImageIcon,
 } from 'lucide-react';
 
 export const RichTextEditor = ({
@@ -36,12 +37,13 @@ export const RichTextEditor = ({
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-amber-700 underline hover:text-amber-800',
+          class: 'text-amber-600 underline font-semibold hover:text-amber-700',
         },
       }),
       Image.configure({
+        allowBase64: true,
         HTMLAttributes: {
-          class: 'rounded-xl max-w-full my-4 shadow-sm',
+          class: 'rounded-xl max-w-full my-4 shadow-sm border border-borderCream',
         },
       }),
     ],
@@ -77,6 +79,13 @@ export const RichTextEditor = ({
     }
 
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+  };
+
+  const addImage = () => {
+    const url = window.prompt('Enter image URL (e.g. from ImageKit or Media Library):');
+    if (url && url.trim()) {
+      editor.chain().focus().setImage({ src: url.trim() }).run();
+    }
   };
 
   const ToolbarButton = ({ onClick, active = false, disabled = false, children, title }) => (
@@ -195,6 +204,10 @@ export const RichTextEditor = ({
           </ToolbarButton>
         )}
 
+        <ToolbarButton onClick={addImage} title="Insert Image">
+          <ImageIcon className="w-4 h-4" />
+        </ToolbarButton>
+
         <div className="w-[1px] h-4 bg-borderCream mx-1" />
 
         <ToolbarButton
@@ -219,4 +232,3 @@ export const RichTextEditor = ({
 };
 
 export default RichTextEditor;
-

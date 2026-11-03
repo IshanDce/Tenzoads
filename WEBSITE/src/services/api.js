@@ -10,6 +10,26 @@ export const apiClient = axios.create({
   timeout: 10000,
 });
 
+/**
+ * Normalizes any relative or absolute image path to a full URL
+ */
+export const formatImageUrl = (url) => {
+  if (!url || typeof url !== 'string') return '';
+  const trimmed = url.trim();
+  if (!trimmed) return '';
+  if (
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('https://') ||
+    trimmed.startsWith('data:') ||
+    trimmed.startsWith('blob:')
+  ) {
+    return trimmed;
+  }
+  const backendBase = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/api\/?$/, '');
+  const cleanPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  return `${backendBase}${cleanPath}`;
+};
+
 // Projects API
 export const getProjects = async (params = {}) => {
   const response = await apiClient.get('/projects', { params });
@@ -48,4 +68,3 @@ export const subscribeNewsletter = async (email) => {
   const response = await apiClient.post('/newsletter', { email });
   return response.data;
 };
-

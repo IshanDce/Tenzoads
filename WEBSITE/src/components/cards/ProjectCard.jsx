@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import PhoneMockup from '../mockups/PhoneMockup';
@@ -6,10 +6,38 @@ import BrowserMockup from '../mockups/BrowserMockup';
 import DashboardMockup from '../mockups/DashboardMockup';
 import BrandMockup from '../mockups/BrandMockup';
 import ChatMockup from '../mockups/ChatMockup';
+import { formatImageUrl } from '../../services/api';
 
 export const ProjectCard = ({ project }) => {
+  const [imgError, setImgError] = useState(false);
+  const formattedThumbnail = formatImageUrl(project.thumbnail);
+  const showRealImage = Boolean(formattedThumbnail && !imgError);
+
   // Determine illustration background and component
   const renderIllustration = () => {
+    // If real image/thumbnail is uploaded, render safely fitted image
+    if (showRealImage) {
+      return (
+        <div className="w-full h-56 bg-[#FBF7EE] border-b border-borderCream/60 flex items-center justify-center overflow-hidden rounded-t-2xl relative p-3">
+          {/* Ambient blurred backdrop for letterbox areas */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-15 filter blur-md scale-110 pointer-events-none"
+            style={{ backgroundImage: `url(${formattedThumbnail})` }}
+          />
+          <img
+            src={formattedThumbnail}
+            alt={project.title}
+            className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain rounded-lg drop-shadow-sm transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            onError={() => setImgError(true)}
+          />
+          <div className="absolute top-3 right-3 z-20 bg-ink/75 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+            {project.techTag || project.category}
+          </div>
+        </div>
+      );
+    }
+
     switch (project.mockupType) {
       case 'phone':
         return (
@@ -112,4 +140,3 @@ export const ProjectCard = ({ project }) => {
 };
 
 export default ProjectCard;
-
