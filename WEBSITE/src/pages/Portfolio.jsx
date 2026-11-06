@@ -158,7 +158,7 @@ export const Portfolio = () => {
                 type="button"
                 onClick={handleLoadMore}
                 disabled={loadingMore}
-                className="inline-flex items-center justify-center px-8 py-3.5 border border-slate-300 text-slate-800 bg-white hover:border-slate-900 hover:text-slate-900 rounded-full font-bold text-sm shadow-sm hover:shadow transition-all duration-200 disabled:opacity-50"
+                className="inline-flex items-center justify-center px-9 py-4 border border-slate-300 text-slate-800 bg-white hover:border-blue-600 hover:text-blue-600 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 rounded-full font-bold text-sm shadow-sm transition-all duration-300 disabled:opacity-50 cursor-pointer active:scale-95"
               >
                 {loadingMore ? 'Loading...' : 'Load more projects'}
               </button>

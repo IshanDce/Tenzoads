@@ -163,16 +163,16 @@ export const About = () => {
         </div>
       </section>
 
-      {/* 3. MISSION & VISION (Side by Side) */}
+      {/* 3. MISSION & VISION (Side by Side with Hover Lift) */}
       <section className="py-16 md:py-24 bg-slate-50 border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Mission: Light card with blue icon square */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 text-slate-900 border border-slate-200/80 shadow-sm space-y-4 relative overflow-hidden">
-              <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-500/20">
+            <div className="group bg-white rounded-3xl p-8 sm:p-10 text-slate-900 border border-slate-200/80 shadow-xs hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-400 transition-all duration-300 hover:-translate-y-2 space-y-4 relative overflow-hidden">
+              <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                 <Sparkles className="w-6 h-6 stroke-[2]" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight group-hover:text-blue-600 transition-colors">
                 {content.missionTitle || 'Our Mission'}
               </h3>
               <p className="text-base text-slate-600 leading-relaxed">
@@ -182,11 +182,11 @@ export const About = () => {
             </div>
 
             {/* Vision: Dark Navy card with blue icon square */}
-            <div className="bg-[#070B19] rounded-3xl p-8 sm:p-10 text-white border border-slate-800 shadow-md space-y-4 relative overflow-hidden">
-              <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-500/20">
+            <div className="group bg-[#070B19] rounded-3xl p-8 sm:p-10 text-white border border-slate-800 shadow-md hover:shadow-2xl hover:border-blue-500 transition-all duration-300 hover:-translate-y-2 space-y-4 relative overflow-hidden">
+              <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                 <Compass className="w-6 h-6 stroke-[2]" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight group-hover:text-blue-400 transition-colors">
                 {content.visionTitle || 'Our Vision'}
               </h3>
               <p className="text-base text-slate-400 leading-relaxed">
@@ -234,13 +234,15 @@ export const About = () => {
               return (
                 <div
                   key={v.title}
-                  className="bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-200"
+                  className="group bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-xs hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 hover:-translate-y-2 cursor-default"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-5 shadow-sm shadow-blue-500/20">
+                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-5 shadow-sm shadow-blue-500/20 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <IconComp className="w-5 h-5 stroke-[2]" />
                     </div>
-                    <h3 className="text-lg font-extrabold text-slate-900 mb-2">{v.title}</h3>
+                    <h3 className="text-lg font-extrabold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {v.title}
+                    </h3>
                     <p className="text-sm text-slate-600 leading-relaxed">{v.desc}</p>
                   </div>
                 </div>

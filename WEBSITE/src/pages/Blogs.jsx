@@ -252,10 +252,10 @@ export const Blogs = () => {
 
           {/* 3. FEATURED ARTICLE CARD (Matching Image 1) */}
           {featuredPost && (
-            <div className="bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300">
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xs hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 transition-all duration-300 hover:-translate-y-1.5 group">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {/* Left: Blue gradient container with Phone Mockup */}
-                <div className="lg:col-span-5 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-2xl h-64 sm:h-72 flex items-center justify-center p-4 overflow-hidden relative shadow-md shadow-blue-500/20">
+                <div className="lg:col-span-5 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-2xl h-64 sm:h-72 flex items-center justify-center p-4 overflow-hidden relative shadow-md shadow-blue-500/20 group-hover:scale-[1.02] transition-transform duration-300">
                   <div className="w-[140px] h-[260px] bg-slate-900 rounded-[28px] p-2 shadow-2xl border-2 border-slate-800 flex flex-col justify-between">
                     <div className="w-10 h-2 bg-black rounded-full mx-auto" />
                     <div className="w-full h-[88%] bg-white rounded-[20px] p-2 space-y-2">
@@ -278,7 +278,7 @@ export const Blogs = () => {
                     {featuredPost.categoryDisplay || 'FEATURED · MOBILE APPS'}
                   </span>
 
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight hover:text-blue-600 transition-colors">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-blue-600 transition-colors">
                     <Link to={`/blogs/${featuredPost.slug || 'flutter-vs-react-native-2026'}`}>
                       {featuredPost.title}
                     </Link>
@@ -295,7 +295,7 @@ export const Blogs = () => {
 
                     <Link
                       to={`/blogs/${featuredPost.slug || 'flutter-vs-react-native-2026'}`}
-                      className="inline-flex items-center justify-center px-7 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-sm transition-all duration-200 shadow-md shadow-blue-500/20"
+                      className="inline-flex items-center justify-center px-7 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-sm transition-all duration-300 shadow-md shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-1 active:scale-95"
                     >
                       Read article
                     </Link>
@@ -322,7 +322,7 @@ export const Blogs = () => {
                 {posts.slice(0, 6).map((post, idx) => (
                   <article
                     key={post.slug || idx}
-                    className="group bg-white rounded-2xl border border-slate-100 p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1"
+                    className="group bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 shadow-xs hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 hover:-translate-y-2"
                   >
                     <div>
                       {/* 16:9 Colored Box Media */}

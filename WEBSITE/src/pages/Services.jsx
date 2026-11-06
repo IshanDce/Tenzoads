@@ -89,16 +89,16 @@ export const Services = () => {
             {servicesData.map((svc) => (
               <div
                 key={svc.number}
-                className="group bg-white rounded-2xl border border-slate-100 p-8 sm:p-9 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 hover:-translate-y-1"
+                className="relative group bg-white rounded-2xl border border-slate-200/90 p-8 sm:p-9 flex flex-col justify-between shadow-xs hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 transition-all duration-300 hover:-translate-y-2 overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-blue-600 before:to-cyan-400 before:opacity-0 group-hover:before:opacity-100 before:transition-opacity"
               >
                 <div className="space-y-4">
                   {/* Number Badge */}
-                  <div className="inline-block bg-blue-50 text-blue-600 font-bold text-xs px-3 py-1 rounded-full">
+                  <div className="inline-block bg-blue-50 group-hover:bg-blue-600 group-hover:text-white text-blue-600 font-extrabold text-xs px-3.5 py-1 rounded-full transition-all duration-300 shadow-2xs">
                     {svc.number}
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors duration-200">
                     {svc.title}
                   </h3>
 
@@ -107,10 +107,13 @@ export const Services = () => {
                     {svc.description}
                   </p>
 
-                  {/* Bullet Points with Cyan/Teal Dots */}
+                  {/* Bullet Points with Cyan/Teal Dots and hover slide */}
                   <div className="space-y-2.5 pt-3 border-t border-slate-100">
                     {svc.bullets.map((b) => (
-                      <div key={b} className="flex items-center gap-2.5 text-sm font-medium text-slate-800">
+                      <div
+                        key={b}
+                        className="flex items-center gap-2.5 text-sm font-medium text-slate-800 hover:translate-x-1.5 transition-transform duration-200 hover:text-blue-600 cursor-default"
+                      >
                         <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 flex-shrink-0" />
                         <span>{b}</span>
                       </div>
@@ -122,10 +125,10 @@ export const Services = () => {
                 <div className="pt-6 mt-6 border-t border-slate-100">
                   <Link
                     to={`/contact?service=${encodeURIComponent(svc.contactService)}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group-hover:translate-x-1 duration-200"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 transition-all duration-200"
                   >
                     <span>Get a quote</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1.5" />
                   </Link>
                 </div>
               </div>

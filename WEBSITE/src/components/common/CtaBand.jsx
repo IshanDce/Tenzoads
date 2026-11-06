@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { usePageContent } from '../../hooks/useSiteData';
 
 export const CtaBand = ({ className = '' }) => {
@@ -34,9 +35,10 @@ export const CtaBand = ({ className = '' }) => {
             <div className="flex-shrink-0">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 hover:bg-slate-100 rounded-full font-bold text-base transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center justify-center gap-2 px-9 py-4 bg-white text-slate-900 hover:bg-slate-50 rounded-full font-extrabold text-base transition-all duration-300 shadow-md hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1 active:scale-95 group cursor-pointer"
               >
                 <span>{content.buttonText || 'Start Your Project'}</span>
+                <ArrowRight className="w-4 h-4 text-blue-600 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
