@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query';
@@ -18,6 +18,8 @@ import ServiceCard from '../components/cards/ServiceCard';
 import ProjectCard from '../components/cards/ProjectCard';
 import FaqAccordion from '../components/common/FaqAccordion';
 import CtaBand from '../components/common/CtaBand';
+import TypewriterWords from '../components/common/TypewriterWords';
+import CountUpNumber from '../components/common/CountUpNumber';
 import { getProjects } from '../services/api';
 import {
   usePageContent,
@@ -74,6 +76,45 @@ export const Home = () => {
 
   const featuredProjects = projectsData && projectsData.length > 0 ? projectsData : [];
 
+  // Staggered reveal for "How We Work" section: steps 1-4 view with 3s gap
+  const [visibleStepCount, setVisibleStepCount] = useState(1);
+  const processSectionRef = useRef(null);
+  const hasTriggeredProcessRef = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasTriggeredProcessRef.current) {
+          hasTriggeredProcessRef.current = true;
+          // Step 1 shown immediately (count=1)
+          // Step 2 revealed at 3 seconds
+          const t1 = setTimeout(() => setVisibleStepCount(2), 3000);
+          // Step 3 revealed at 6 seconds
+          const t2 = setTimeout(() => setVisibleStepCount(3), 6000);
+          // Step 4 revealed at 9 seconds
+          const t3 = setTimeout(() => setVisibleStepCount(4), 9000);
+
+          return () => {
+            clearTimeout(t1);
+            clearTimeout(t2);
+            clearTimeout(t3);
+          };
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    const currentRef = processSectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) observer.unobserve(currentRef);
+    };
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -105,9 +146,16 @@ export const Home = () => {
                 <span>{homeContent.heroEyebrow || 'IT Services & Digital Product Studio'}</span>
               </div>
 
-              {/* H1 Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-                {homeContent.heroTitle || 'We build apps, websites & AI products that grow your business.'}
+              {/* H1 Title with Typewriter & Erase Animation */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.16]">
+                We build{' '}
+                <TypewriterWords
+                  words={['Apps', 'Websites', 'AI Products', 'Automation']}
+                  typingSpeed={85}
+                  deletingSpeed={45}
+                  pauseTime={1600}
+                />
+                <br className="hidden sm:inline" /> that grow your business.
               </h1>
 
               {/* Short Paragraph */}
@@ -116,34 +164,40 @@ export const Home = () => {
                   'TenzoAds is a full-service IT company delivering mobile apps, websites, AI integration, UI/UX and graphic design, all under one roof.'}
               </p>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons with enhanced hover */}
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   to="/contact"
-                  className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-200 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0"
+                  className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 hover:-translate-y-1 active:translate-y-0"
                 >
                   {homeContent.buttonStart || 'Start a Project'}
                 </Link>
                 <Link
                   to="/portfolio"
-                  className="px-8 py-3.5 border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-200"
+                  className="px-8 py-3.5 border border-slate-700 bg-slate-900/60 hover:bg-slate-800 hover:border-slate-600 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:-translate-y-1"
                 >
                   {homeContent.buttonWork || 'View Our Work'}
                 </Link>
               </div>
 
-              {/* Three Stat Badges (24 Hours, Free, 5) */}
+              {/* Three Stat Badges with Dynamic Count-Up Animations */}
               <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-black text-white">24 Hours</div>
+                <div className="group transition-transform hover:-translate-y-0.5">
+                  <div className="text-2xl sm:text-3xl font-black text-white group-hover:text-cyan-400 transition-colors">
+                    <CountUpNumber start={1} end={24} duration={1500} suffix=" Hours" />
+                  </div>
                   <div className="text-xs text-slate-400 mt-0.5">Quote turnaround</div>
                 </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-black text-white">Free</div>
+                <div className="group transition-transform hover:-translate-y-0.5">
+                  <div className="text-2xl sm:text-3xl font-black text-white group-hover:text-blue-400 transition-colors">
+                    Free
+                  </div>
                   <div className="text-xs text-slate-400 mt-0.5">Consultation</div>
                 </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-black text-white">5</div>
+                <div className="group transition-transform hover:-translate-y-0.5">
+                  <div className="text-2xl sm:text-3xl font-black text-white group-hover:text-cyan-400 transition-colors">
+                    <CountUpNumber start={1} end={5} duration={1200} />
+                  </div>
                   <div className="text-xs text-slate-400 mt-0.5">Core services</div>
                 </div>
               </div>
@@ -168,7 +222,7 @@ export const Home = () => {
             {technologies.map((tech) => (
               <span
                 key={tech}
-                className="bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-5 py-2 rounded-full shadow-sm hover:border-blue-500 hover:text-blue-600 transition-all duration-200 cursor-default hover:scale-105"
+                className="bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full shadow-xs hover:border-blue-500 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 cursor-default hover:scale-105 active:scale-95"
               >
                 {tech}
               </span>
@@ -232,19 +286,21 @@ export const Home = () => {
               </div>
             </div>
 
-            {/* Right 2x2 Grid of dark cards */}
+            {/* Right 2x2 Grid of dark cards with enhanced hover lift */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
               {whyUsItems.map((item) => {
                 const IconComponent = whyIcons[item.icon] || Box;
                 return (
                   <div
                     key={item.title}
-                    className="bg-[#111827]/80 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300"
+                    className="bg-[#111827]/80 border border-slate-800 rounded-2xl p-6 sm:p-7 hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/15 transition-all duration-300 hover:-translate-y-1.5 group cursor-default"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold mb-4 shadow-md shadow-blue-500/20">
+                    <div className="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold mb-4 shadow-md shadow-blue-500/25 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <IconComponent className="w-5 h-5 stroke-[2]" />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                      {item.title}
+                    </h3>
                     <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                       {item.description}
                     </p>
@@ -256,8 +312,8 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 5. HOW WE WORK */}
-      <section className="py-20 md:py-28 bg-white border-b border-slate-100">
+      {/* 5. HOW WE WORK (Sequential 3-Second Staggered Step Reveal) */}
+      <section ref={processSectionRef} className="py-20 md:py-28 bg-white border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <SectionHeading
             eyebrow="● How We Work"
@@ -266,22 +322,50 @@ export const Home = () => {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            {steps.map((step) => (
-              <div
-                key={step.number || step.order}
-                className="bg-slate-50 border border-slate-100 rounded-2xl p-6 sm:p-7 relative transition-all duration-300 hover:shadow-soft hover:border-blue-200"
-              >
-                {/* Blue number circle */}
-                <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-extrabold text-base flex items-center justify-center mb-5 shadow-md shadow-blue-500/20">
-                  {step.number || step.order}
-                </div>
+            {steps.map((step, idx) => {
+              const isVisible = idx < visibleStepCount;
+              const isCurrentlyRevealing = idx === visibleStepCount - 1 && visibleStepCount < 4;
 
-                <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{step.description}</p>
-              </div>
-            ))}
+              return (
+                <div
+                  key={step.number || step.order}
+                  className={`bg-slate-50 border rounded-2xl p-6 sm:p-7 relative transition-all duration-700 transform ${
+                    isVisible
+                      ? 'opacity-100 translate-y-0 scale-100 border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-2'
+                      : 'opacity-25 translate-y-4 scale-95 border-slate-100 pointer-events-none'
+                  } ${
+                    isCurrentlyRevealing
+                      ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-500/20 bg-white'
+                      : 'hover:bg-white'
+                  }`}
+                >
+                  {/* Step Header with Number Circle and Live Revealing Pulse */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className={`w-10 h-10 rounded-full font-extrabold text-base flex items-center justify-center shadow-md transition-all duration-300 ${
+                        isVisible
+                          ? 'bg-blue-600 text-white shadow-blue-500/25 group-hover:scale-110'
+                          : 'bg-slate-200 text-slate-400'
+                      }`}
+                    >
+                      {step.number || step.order}
+                    </div>
+
+                    {isCurrentlyRevealing && (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-[11px] font-bold animate-pulse">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping" />
+                        Next step in 3s
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{step.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

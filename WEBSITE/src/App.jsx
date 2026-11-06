@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
 import LoadingState from './components/common/LoadingState';
+import SocialFloatingWidget from './components/common/SocialFloatingWidget';
 
 // Lazy loaded page components
 const Home = lazy(() => import('./pages/Home'));
@@ -46,6 +47,9 @@ export const App = () => {
 
       {/* 3. Global Footer */}
       <Footer />
+
+      {/* 4. Sticky Floating Social Channels Widget */}
+      <SocialFloatingWidget />
     </div>
   );
 };

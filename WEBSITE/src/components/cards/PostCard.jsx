@@ -9,7 +9,7 @@ export const PostCard = ({ post }) => {
   const showCover = Boolean(formattedCover && !imgError);
 
   return (
-    <article className="group bg-white rounded-2xl border border-slate-100 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1">
+    <article className="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-xs hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 hover:-translate-y-2">
       <div>
         <Link to={`/blogs/${post.slug}`} className="block overflow-hidden">
           {showCover ? (

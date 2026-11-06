@@ -89,7 +89,7 @@ export const ProjectCard = ({ project }) => {
   };
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-100 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1">
+    <div className="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-xs hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 hover:-translate-y-2">
       <Link to={`/portfolio/${project.slug}`} className="block overflow-hidden">
         {renderIllustration()}
       </Link>
@@ -129,7 +129,7 @@ export const ProjectCard = ({ project }) => {
           <Link
             to={`/portfolio/${project.slug}`}
             aria-label={`View ${project.title}`}
-            className="w-8 h-8 rounded-full border border-slate-200 text-slate-700 flex items-center justify-center transition-all duration-200 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 shadow-sm"
+            className="w-8 h-8 rounded-full border border-slate-200 text-slate-700 flex items-center justify-center transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:-rotate-45 shadow-sm"
           >
             <ArrowRight className="w-4 h-4 stroke-[2.5]" />
           </Link>
