@@ -119,3 +119,4 @@ export const SocialFloatingWidget = () => {
 };
 
 export default SocialFloatingWidget;
+

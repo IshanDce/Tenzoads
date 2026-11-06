@@ -76,7 +76,7 @@ export const Home = () => {
 
   const featuredProjects = projectsData && projectsData.length > 0 ? projectsData : [];
 
-  // Staggered reveal for "How We Work" section: steps 1-4 view with 3s gap
+  // Staggered reveal for "How We Work" section: steps 1-4 view with 2s gap
   const [visibleStepCount, setVisibleStepCount] = useState(1);
   const processSectionRef = useRef(null);
   const hasTriggeredProcessRef = useRef(false);
@@ -88,12 +88,12 @@ export const Home = () => {
         if (entry.isIntersecting && !hasTriggeredProcessRef.current) {
           hasTriggeredProcessRef.current = true;
           // Step 1 shown immediately (count=1)
-          // Step 2 revealed at 3 seconds
-          const t1 = setTimeout(() => setVisibleStepCount(2), 3000);
-          // Step 3 revealed at 6 seconds
-          const t2 = setTimeout(() => setVisibleStepCount(3), 6000);
-          // Step 4 revealed at 9 seconds
-          const t3 = setTimeout(() => setVisibleStepCount(4), 9000);
+          // Step 2 revealed at 2 seconds
+          const t1 = setTimeout(() => setVisibleStepCount(2), 2000);
+          // Step 3 revealed at 4 seconds
+          const t2 = setTimeout(() => setVisibleStepCount(3), 4000);
+          // Step 4 revealed at 6 seconds
+          const t3 = setTimeout(() => setVisibleStepCount(4), 6000);
 
           return () => {
             clearTimeout(t1);
@@ -312,7 +312,7 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 5. HOW WE WORK (Sequential 3-Second Staggered Step Reveal) */}
+      {/* 5. HOW WE WORK (Sequential 2-Second Step Reveal) */}
       <section ref={processSectionRef} className="py-20 md:py-28 bg-white border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <SectionHeading
@@ -324,39 +324,21 @@ export const Home = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
             {steps.map((step, idx) => {
               const isVisible = idx < visibleStepCount;
-              const isCurrentlyRevealing = idx === visibleStepCount - 1 && visibleStepCount < 4;
 
               return (
                 <div
                   key={step.number || step.order}
-                  className={`bg-slate-50 border rounded-2xl p-6 sm:p-7 relative transition-all duration-700 transform ${
+                  className={`rounded-2xl p-6 sm:p-7 relative transition-all duration-500 ease-out transform ${
                     isVisible
-                      ? 'opacity-100 translate-y-0 scale-100 border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-2'
-                      : 'opacity-25 translate-y-4 scale-95 border-slate-100 pointer-events-none'
-                  } ${
-                    isCurrentlyRevealing
-                      ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-500/20 bg-white'
-                      : 'hover:bg-white'
+                      ? 'opacity-100 visible translate-y-0 scale-100 bg-slate-50 border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-2 hover:bg-white'
+                      : 'opacity-0 invisible translate-y-6 scale-95 pointer-events-none'
                   }`}
                 >
-                  {/* Step Header with Number Circle and Live Revealing Pulse */}
+                  {/* Step Header with Number Circle */}
                   <div className="flex items-center justify-between mb-4">
-                    <div
-                      className={`w-10 h-10 rounded-full font-extrabold text-base flex items-center justify-center shadow-md transition-all duration-300 ${
-                        isVisible
-                          ? 'bg-blue-600 text-white shadow-blue-500/25 group-hover:scale-110'
-                          : 'bg-slate-200 text-slate-400'
-                      }`}
-                    >
+                    <div className="w-10 h-10 rounded-full font-extrabold text-base flex items-center justify-center shadow-md bg-blue-600 text-white shadow-blue-500/25 transition-transform duration-300 group-hover:scale-110">
                       {step.number || step.order}
                     </div>
-
-                    {isCurrentlyRevealing && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-[11px] font-bold animate-pulse">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping" />
-                        Next step in 3s
-                      </span>
-                    )}
                   </div>
 
                   <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
