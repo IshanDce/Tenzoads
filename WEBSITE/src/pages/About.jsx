@@ -14,6 +14,7 @@ import SectionHeading from '../components/common/SectionHeading';
 import CtaBand from '../components/common/CtaBand';
 import PhoneMockup from '../components/mockups/PhoneMockup';
 import BrowserMockup from '../components/mockups/BrowserMockup';
+import CountUpNumber from '../components/common/CountUpNumber';
 import { usePageContent } from '../hooks/useSiteData';
 
 export const About = () => {
@@ -129,23 +130,34 @@ export const About = () => {
             </div>
           </div>
 
-          {/* Key Stats Row (24h, 5, 2, 4) */}
-          <div className="pt-10 border-t border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-blue-600">24h</div>
+          {/* Key Stats Row (Dynamic Count-Up for Hour, Services, Offices, Delivery Process) */}
+          <div className="pt-10 border-t border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="space-y-1 p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-blue-50/50 group cursor-default">
+              <div className="text-3xl sm:text-4xl font-black text-blue-600 group-hover:scale-105 transition-transform">
+                <CountUpNumber start={1} end={24} duration={1500} suffix="h" />
+              </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium">Quote turnaround</div>
             </div>
-            <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-slate-900">5</div>
+
+            <div className="space-y-1 p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-slate-50 group cursor-default">
+              <div className="text-3xl sm:text-4xl font-black text-slate-900 group-hover:text-blue-600 group-hover:scale-105 transition-all">
+                <CountUpNumber start={1} end={5} duration={1200} suffix="+" />
+              </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium">Core services</div>
             </div>
-            <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-slate-900">2</div>
+
+            <div className="space-y-1 p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-slate-50 group cursor-default">
+              <div className="text-3xl sm:text-4xl font-black text-slate-900 group-hover:text-blue-600 group-hover:scale-105 transition-all">
+                <CountUpNumber start={1} end={2} duration={1000} />
+              </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium">Offices: India & USA</div>
             </div>
-            <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-slate-900">4</div>
-              <div className="text-xs sm:text-sm text-slate-500 font-medium">Step delivery process</div>
+
+            <div className="space-y-1 p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-slate-50 group cursor-default">
+              <div className="text-3xl sm:text-4xl font-black text-slate-900 group-hover:text-blue-600 group-hover:scale-105 transition-all">
+                <CountUpNumber start={1} end={4} duration={1100} suffix="-Step" />
+              </div>
+              <div className="text-xs sm:text-sm text-slate-500 font-medium">Delivery process</div>
             </div>
           </div>
         </div>
