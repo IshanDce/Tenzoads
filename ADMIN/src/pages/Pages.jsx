@@ -71,20 +71,20 @@ export const Pages = () => {
     const val = formData[key] ?? '';
     return (
       <div key={key} className="space-y-1.5">
-        <label className="text-xs font-bold text-ink">{label}</label>
+        <label className="text-xs font-bold text-slate-900">{label}</label>
         {type === 'textarea' ? (
           <textarea
             rows={3}
             value={val}
             onChange={(e) => handleFieldChange(key, e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
           />
         ) : (
           <input
             type="text"
             value={val}
             onChange={(e) => handleFieldChange(key, e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
           />
         )}
       </div>
@@ -95,11 +95,11 @@ export const Pages = () => {
     <div className="space-y-6 animate-fade-in max-w-5xl">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight flex items-center gap-2">
-            <BookOpen className="w-7 h-7 text-amber-500" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <BookOpen className="w-7 h-7 text-blue-600" />
             Page Copy & Headlines
           </h1>
-          <p className="text-xs sm:text-sm text-muted mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Edit text content across every section of the public website.
           </p>
         </div>
@@ -107,7 +107,7 @@ export const Pages = () => {
         <button
           onClick={handleSubmit}
           disabled={saveMutation.isPending}
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-xs shadow-soft transition-all disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-xs shadow-soft transition-all disabled:opacity-60"
         >
           {saveMutation.isPending ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -119,15 +119,15 @@ export const Pages = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto border-b border-borderCream pb-2">
+      <div className="flex items-center gap-2 overflow-x-auto border-b border-slate-200/80 pb-2">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
               activeTab === tab.key
-                ? 'bg-ink text-white shadow-xs'
-                : 'text-muted hover:text-ink hover:bg-neutral-100'
+                ? 'bg-blue-600 text-white shadow-xs shadow-blue-500/20'
+                : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             {tab.label}
@@ -136,15 +136,15 @@ export const Pages = () => {
       </div>
 
       {isLoading ? (
-        <div className="py-20 text-center text-muted">
-          <Loader2 className="w-6 h-6 animate-spin mx-auto text-amber-500 mb-2" />
+        <div className="py-20 text-center text-slate-500">
+          <Loader2 className="w-6 h-6 animate-spin mx-auto text-blue-600 mb-2" />
           Loading content...
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
           {activeTab === 'home' && (
-            <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-6">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-6">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 Homepage Hero Section
               </h2>
               {renderField('heroEyebrow', 'Eyebrow Chip')}
@@ -155,7 +155,7 @@ export const Pages = () => {
                 {renderField('buttonWork', 'Secondary Button Label')}
               </div>
 
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted pt-4 border-t border-borderCream">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 pt-4 border-t border-slate-200/80">
                 Section Sub-Headlines
               </h2>
               {renderField('techTitle', 'Technologies Marquee Title')}
@@ -169,8 +169,8 @@ export const Pages = () => {
           )}
 
           {activeTab === 'about' && (
-            <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-6">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-6">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 About Hero & Story
               </h2>
               {renderField('heroTitle', 'About H1 Title')}
@@ -179,7 +179,7 @@ export const Pages = () => {
               {renderField('storyParagraph1', 'Our Story Paragraph 1', 'textarea')}
               {renderField('storyParagraph2', 'Our Story Paragraph 2', 'textarea')}
 
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted pt-4 border-t border-borderCream">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 pt-4 border-t border-slate-200/80">
                 Mission & Vision Blocks
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -191,7 +191,7 @@ export const Pages = () => {
                 {renderField('visionText', 'Vision Text', 'textarea')}
               </div>
 
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted pt-4 border-t border-borderCream">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 pt-4 border-t border-slate-200/80">
                 Section Headings
               </h2>
               {renderField('valuesTitle', 'Our Values Heading')}
@@ -200,8 +200,8 @@ export const Pages = () => {
           )}
 
           {activeTab === 'portfolio' && (
-            <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 Portfolio Hero Header
               </h2>
               {renderField('heroTitle', 'H1 Heading')}
@@ -210,8 +210,8 @@ export const Pages = () => {
           )}
 
           {activeTab === 'blogs' && (
-            <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 Blog Listing Header
               </h2>
               {renderField('heroTitle', 'H1 Heading')}
@@ -222,8 +222,8 @@ export const Pages = () => {
           )}
 
           {activeTab === 'contact' && (
-            <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 Contact & Free Quote Page
               </h2>
               {renderField('heroEyebrow', 'Eyebrow Label')}
@@ -236,8 +236,8 @@ export const Pages = () => {
           )}
 
           {activeTab === 'cta' && (
-            <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 Yellow CTA Banner (Shown across Home, About & Portfolio)
               </h2>
               {renderField('eyebrow', 'Eyebrow Tag')}
@@ -251,7 +251,7 @@ export const Pages = () => {
             <button
               type="submit"
               disabled={saveMutation.isPending}
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-sm shadow-soft transition-all disabled:opacity-60"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-sm shadow-soft transition-all disabled:opacity-60"
             >
               {saveMutation.isPending ? (
                 <Loader2 className="w-4 h-4 animate-spin" />

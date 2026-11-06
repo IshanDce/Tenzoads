@@ -20,11 +20,15 @@ export const SectionHeading = ({
         <div
           className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
             dark
-              ? 'bg-neutral-800 text-amber'
-              : 'bg-amber-100/70 text-ink'
+              ? 'bg-blue-950/70 text-blue-400 border border-blue-800/50'
+              : 'bg-blue-50 text-blue-600 border border-blue-100'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-amber flex-shrink-0 animate-pulse" />
+          <span
+            className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+              dark ? 'bg-cyan-400 animate-pulse' : 'bg-blue-600'
+            }`}
+          />
           <span>{eyebrow.replace(/^●\s*/, '')}</span>
         </div>
       )}
@@ -32,7 +36,7 @@ export const SectionHeading = ({
       {title && (
         <h2
           className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.2] ${
-            dark ? 'text-white' : 'text-ink'
+            dark ? 'text-white' : 'text-slate-900'
           }`}
         >
           {title}
@@ -42,7 +46,7 @@ export const SectionHeading = ({
       {description && (
         <p
           className={`text-base sm:text-lg leading-relaxed ${
-            dark ? 'text-neutral-400' : 'text-muted'
+            dark ? 'text-slate-400' : 'text-slate-600'
           }`}
         >
           {description}
@@ -53,4 +57,3 @@ export const SectionHeading = ({
 };
 
 export default SectionHeading;
-

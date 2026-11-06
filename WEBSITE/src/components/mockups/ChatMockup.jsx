@@ -1,73 +1,44 @@
 import React from 'react';
-import { Bot, Send, User } from 'lucide-react';
 
 export const ChatMockup = ({ className = '', title = 'Nova AI Assistant' }) => {
   return (
     <div
-      className={`w-full max-w-[340px] sm:max-w-[400px] bg-white rounded-2xl overflow-hidden shadow-xl border border-borderCream mx-auto flex flex-col ${className}`}
+      className={`mx-auto w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-md flex flex-col justify-between ${className}`}
     >
-      {/* Chat Header */}
-      <div className="bg-amber px-4 py-3 flex items-center justify-between">
+      {/* Top Header */}
+      <div className="flex items-center justify-between pb-3 border-b border-slate-200 mb-3">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-ink text-white flex items-center justify-center">
-            <Bot className="w-4 h-4 text-amber" />
+          <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold shadow-sm shadow-blue-500/30">
+            AI
           </div>
           <div>
-            <h4 className="text-xs font-extrabold text-ink leading-tight">{title}</h4>
-            <span className="text-[9px] text-ink/75 font-semibold flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block animate-pulse" />
-              Connected to Enterprise API
-            </span>
+            <div className="text-xs font-bold text-slate-900">{title}</div>
+            <div className="text-[9px] text-emerald-600 font-medium">● Online</div>
           </div>
         </div>
-        <span className="text-[9px] bg-white/40 px-2 py-0.5 rounded-full font-bold text-ink">
-          GPT-4o
-        </span>
+        <div className="text-[10px] text-slate-400">LLM Engine v4</div>
       </div>
 
-      {/* Message Stream */}
-      <div className="p-4 bg-cream-light space-y-3 flex-1">
-        {/* User Bubble */}
-        <div className="flex justify-end items-start gap-2">
-          <div className="bg-ink text-white rounded-2xl rounded-tr-none px-3.5 py-2 text-xs max-w-[80%] shadow-sm">
-            Can you summarize our Q3 support tickets and highlight recurring issues?
-          </div>
-          <div className="w-6 h-6 rounded-full bg-neutral-300 flex items-center justify-center text-ink flex-shrink-0">
-            <User className="w-3.5 h-3.5" />
-          </div>
+      {/* Messages */}
+      <div className="space-y-2.5 my-2">
+        <div className="max-w-[85%] bg-white border border-slate-200 text-slate-800 text-[11px] p-2.5 rounded-2xl rounded-tl-sm shadow-sm leading-relaxed">
+          Hello! How can I help synthesize your workflow documents today?
         </div>
-
-        {/* AI Bot Bubble */}
-        <div className="flex justify-start items-start gap-2">
-          <div className="w-6 h-6 rounded-full bg-amber flex items-center justify-center text-ink flex-shrink-0">
-            <Bot className="w-3.5 h-3.5" />
-          </div>
-          <div className="bg-white border border-borderCream text-ink rounded-2xl rounded-tl-none p-3 text-xs max-w-[85%] shadow-sm space-y-2">
-            <p className="font-medium">
-              Analyzed 1,420 tickets from Q3. Here are the top 3 drivers:
-            </p>
-            <div className="bg-cream rounded-xl p-2 space-y-1 text-[11px]">
-              <div className="flex justify-between font-bold">
-                <span>1. Checkout webhook timeout</span>
-                <span className="text-amber-700">42%</span>
-              </div>
-              <div className="flex justify-between font-bold">
-                <span>2. Password reset email delay</span>
-                <span className="text-amber-700">28%</span>
-              </div>
-            </div>
-            <p className="text-[10px] text-muted">Ready to deploy automated fixes?</p>
-          </div>
+        <div className="max-w-[85%] ml-auto bg-blue-600 text-white text-[11px] p-2.5 rounded-2xl rounded-tr-sm shadow-sm leading-relaxed">
+          Extract customer action items and summarize the Q3 sprint velocity.
+        </div>
+        <div className="max-w-[85%] bg-white border border-slate-200 text-slate-800 text-[11px] p-2.5 rounded-2xl rounded-tl-sm shadow-sm leading-relaxed">
+          Analyzed 14 tickets. Key milestone delivered 4 days ahead of schedule.
         </div>
       </div>
 
-      {/* Chat Input */}
-      <div className="p-3 bg-white border-t border-borderCream flex items-center gap-2">
-        <div className="flex-1 bg-cream-light rounded-full px-3.5 py-1.5 text-xs text-muted border border-borderCream flex items-center">
+      {/* Input bar */}
+      <div className="mt-3 flex items-center gap-2 pt-2 border-t border-slate-200">
+        <div className="flex-1 bg-white border border-slate-200 rounded-full px-3 py-1.5 text-[10px] text-slate-400">
           Ask Nova anything...
         </div>
-        <div className="w-7 h-7 rounded-full bg-amber flex items-center justify-center text-ink shadow-sm">
-          <Send className="w-3.5 h-3.5" />
+        <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white text-[10px] shadow-sm">
+          ↑
         </div>
       </div>
     </div>
@@ -75,4 +46,3 @@ export const ChatMockup = ({ className = '', title = 'Nova AI Assistant' }) => {
 };
 
 export default ChatMockup;
-

@@ -3,12 +3,12 @@ import React from 'react';
 export const PhoneMockup = ({ className = '', title = 'Bloom Pay' }) => {
   return (
     <div
-      className={`relative mx-auto w-[240px] sm:w-[260px] h-[480px] bg-ink rounded-[40px] p-3 shadow-2xl border-4 border-neutral-800 ${className}`}
+      className={`relative mx-auto w-[240px] sm:w-[260px] h-[480px] bg-slate-900 rounded-[40px] p-3 shadow-2xl border-4 border-slate-800 ${className}`}
     >
       {/* Speaker / Dynamic Island */}
-      <div className="absolute top-5 left-1/2 -translate-x-1/2 w-20 h-4 bg-neutral-900 rounded-full z-20 flex items-center justify-center">
-        <div className="w-2.5 h-2.5 rounded-full bg-neutral-800 mr-2" />
-        <div className="w-2 h-2 rounded-full bg-neutral-800" />
+      <div className="absolute top-5 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-full z-20 flex items-center justify-center">
+        <div className="w-2.5 h-2.5 rounded-full bg-slate-800 mr-2" />
+        <div className="w-2 h-2 rounded-full bg-slate-800" />
       </div>
 
       {/* Screen Container */}
@@ -16,23 +16,23 @@ export const PhoneMockup = ({ className = '', title = 'Bloom Pay' }) => {
         {/* App Topbar */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-amber" />
-            <span className="text-[11px] font-bold text-ink">{title}</span>
+            <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />
+            <span className="text-[11px] font-bold text-slate-900">{title}</span>
           </div>
-          <div className="w-5 h-5 rounded-full bg-cream flex items-center justify-center">
-            <span className="text-[9px] font-bold text-ink">●</span>
+          <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center">
+            <span className="text-[9px] font-bold text-blue-600">●</span>
           </div>
         </div>
 
         {/* Balance / Hero Card in App */}
-        <div className="bg-amber rounded-2xl p-3.5 mb-3 text-ink shadow-sm">
-          <span className="text-[9px] font-bold uppercase tracking-wider text-ink/70 block">
+        <div className="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-3.5 mb-3 text-white shadow-md shadow-blue-500/20">
+          <span className="text-[9px] font-bold uppercase tracking-wider text-blue-100 block">
             Total Balance
           </span>
           <div className="text-xl font-extrabold tracking-tight mt-0.5">$24,580.00</div>
-          <div className="mt-2.5 flex items-center justify-between text-[10px] font-semibold bg-white/30 backdrop-blur-sm rounded-lg px-2 py-1">
+          <div className="mt-2.5 flex items-center justify-between text-[10px] font-semibold bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1">
             <span>+14.2% this month</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
           </div>
         </div>
 
@@ -41,42 +41,45 @@ export const PhoneMockup = ({ className = '', title = 'Bloom Pay' }) => {
           {['Send', 'Receive', 'Invest'].map((act, i) => (
             <div
               key={act}
-              className="bg-cream-light border border-borderCream rounded-xl p-2 text-center"
+              className="bg-slate-50 border border-slate-100 rounded-xl p-2 text-center"
             >
               <div
                 className={`w-5 h-5 mx-auto rounded-full mb-1 flex items-center justify-center text-[9px] font-bold ${
-                  i === 0 ? 'bg-ink text-white' : 'bg-amber text-ink'
+                  i === 0 ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-600'
                 }`}
               >
                 ✓
               </div>
-              <span className="text-[9px] font-bold text-ink block">{act}</span>
+              <span className="text-[9px] font-bold text-slate-800 block">{act}</span>
             </div>
           ))}
         </div>
 
         {/* Transaction Rows */}
         <div className="space-y-2 mt-auto">
-          <div className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
             Recent Activity
           </div>
           {[
-            { name: 'App Development Sprint', amount: '+$3,200', color: 'bg-amber' },
-            { name: 'Cloud Server Cluster', amount: '-$140', color: 'bg-neutral-800' },
-            { name: 'UI Design Milestone', amount: '+$1,850', color: 'bg-amber-300' },
-          ].map((tx, idx) => (
+            { name: 'Cloud Subscription', amt: '-$240.00', cat: 'Software' },
+            { name: 'Wire Transfer In', amt: '+$4,200.00', cat: 'Income' },
+            { name: 'API Server Nodes', amt: '-$89.50', cat: 'DevOps' },
+          ].map((tx) => (
             <div
-              key={idx}
-              className="flex items-center justify-between p-2 rounded-xl bg-cream-light border border-borderCream/60"
+              key={tx.name}
+              className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100 text-[10px]"
             >
-              <div className="flex items-center gap-2">
-                <div className={`w-6 h-6 rounded-lg ${tx.color} flex-shrink-0`} />
-                <div className="text-left">
-                  <div className="text-[10px] font-bold text-ink truncate w-24">{tx.name}</div>
-                  <div className="text-[8px] text-muted">Completed</div>
-                </div>
+              <div>
+                <div className="font-bold text-slate-800">{tx.name}</div>
+                <div className="text-[8px] text-slate-400">{tx.cat}</div>
               </div>
-              <span className="text-[10px] font-extrabold text-ink">{tx.amount}</span>
+              <span
+                className={`font-bold ${
+                  tx.amt.startsWith('+') ? 'text-emerald-600' : 'text-slate-800'
+                }`}
+              >
+                {tx.amt}
+              </span>
             </div>
           ))}
         </div>
@@ -86,4 +89,3 @@ export const PhoneMockup = ({ className = '', title = 'Bloom Pay' }) => {
 };
 
 export default PhoneMockup;
-

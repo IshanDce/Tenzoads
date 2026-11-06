@@ -18,22 +18,21 @@ import { usePageContent } from '../hooks/useSiteData';
 
 export const About = () => {
   const { content } = usePageContent('about', {
-    heroTitle: "We're a team of builders, designers and problem-solvers",
+    heroTitle: 'Builders, designers and problem-solvers',
     heroDescription:
-      'TenzoAds is an IT services company helping startups and growing businesses turn ideas into reliable mobile apps, websites and AI-powered products.',
+      'TenzoAds helps startups and growing businesses turn ideas into reliable mobile apps, websites and AI-powered products.',
     storyHeading: 'Built to be the only tech partner you need',
     storyParagraph1:
-      'We started TenzoAds with a simple idea: great digital products need design, engineering and strategy working together, not scattered across different vendors.',
+      'Our team handles design, development and AI under one roof, so you work with one accountable partner from the first sketch to launch and long after.',
     storyParagraph2:
       'Today we design and build native and cross-platform mobile apps, high-performance websites and practical AI integrations for clients who value clear communication and quality work.',
     missionTitle: 'Our Mission',
     missionText:
-      'To help businesses grow by delivering digital products that are fast, reliable and a pleasure to use.',
+      'Deliver reliable apps, websites and AI products that help businesses grow, with honest timelines, clear communication and engineering quality we are proud to stand behind.',
     visionTitle: 'Our Vision',
     visionText:
-      'To be the most trusted technology partner for startups and growing companies, known for quality, honesty and long-term relationships.',
-    valuesTitle: 'The principles behind every project',
-    expertiseTitle: 'Our expertise at a glance',
+      'To be the one technology partner startups and growing businesses trust from idea to launch, known for craft, transparency and long-term support.',
+    valuesTitle: 'The principles behind everything we build',
   });
 
   return (
@@ -46,35 +45,36 @@ export const About = () => {
         />
       </Helmet>
 
-      {/* 1. HERO SECTION (Cream background) */}
-      <section className="bg-cream pt-12 pb-16 md:pt-16 md:pb-24 border-b border-borderCream">
-        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-4">
+      {/* 1. HERO SECTION (Dark Navy with Ambient Glow) */}
+      <section className="relative bg-[#070B19] text-white pt-16 pb-20 md:pt-20 md:pb-28 overflow-hidden border-b border-slate-900">
+        <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-blue-600/15 rounded-full blur-[110px] pointer-events-none" />
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-4 relative z-10">
           {/* Breadcrumb */}
-          <nav className="text-xs font-bold text-muted uppercase tracking-wider">
-            <Link to="/" className="hover:text-ink transition-colors">
+          <nav className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <Link to="/" className="hover:text-blue-400 transition-colors">
               Home
             </Link>{' '}
-            / <span className="text-ink">About Us</span>
+            / <span className="text-white">About us</span>
           </nav>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-ink tracking-tight max-w-4xl leading-[1.14]">
-            {content.heroTitle || "We're a team of builders, designers and problem-solvers"}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight max-w-4xl leading-[1.14]">
+            {content.heroTitle || 'Builders, designers and problem-solvers'}
           </h1>
 
-          <p className="text-base sm:text-lg text-muted max-w-2xl leading-relaxed pt-2">
+          <p className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed pt-2">
             {content.heroDescription ||
-              'TenzoAds is an IT services company helping startups and growing businesses turn ideas into reliable mobile apps, websites and AI-powered products.'}
+              'TenzoAds helps startups and growing businesses turn ideas into reliable mobile apps, websites and AI-powered products.'}
           </p>
         </div>
       </section>
 
       {/* 2. OUR STORY SECTION */}
-      <section className="py-20 md:py-28 bg-white border-b border-borderCream">
-        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 bg-white border-b border-slate-100">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Mockup Graphic */}
             <div className="lg:col-span-6">
-              <div className="bg-cream rounded-3xl p-6 sm:p-10 border border-borderCream relative overflow-hidden flex items-center justify-center">
+              <div className="bg-gradient-to-br from-blue-500/10 via-cyan-400/5 to-transparent rounded-3xl p-6 sm:p-10 border border-blue-100 relative overflow-hidden flex items-center justify-center">
                 <div className="relative w-full max-w-md flex flex-col sm:flex-row items-center justify-center gap-4">
                   {/* Phone Mockup */}
                   <div className="transform scale-[0.72] sm:scale-[0.78] z-10 flex-shrink-0">
@@ -90,19 +90,19 @@ export const About = () => {
 
             {/* Right Story Content */}
             <div className="lg:col-span-6 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-ink text-xs font-bold uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber" />
-                <span>OUR STORY</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-bold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                <span>Our Story</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight leading-[1.2]">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
                 {content.storyHeading || 'Built to be the only tech partner you need'}
               </h2>
 
-              <div className="space-y-4 text-base text-muted leading-relaxed">
+              <div className="space-y-4 text-base text-slate-600 leading-relaxed">
                 <p>
                   {content.storyParagraph1 ||
-                    'We started TenzoAds with a simple idea: great digital products need design, engineering and strategy working together, not scattered across different vendors.'}
+                    'Our team handles design, development and AI under one roof, so you work with one accountable partner from the first sketch to launch and long after.'}
                 </p>
                 <p>
                   {content.storyParagraph2 ||
@@ -110,7 +110,7 @@ export const About = () => {
                 </p>
               </div>
 
-              {/* 4 Amber-Check Bullets */}
+              {/* 4 Blue-Check Bullets */}
               <div className="pt-2 space-y-3">
                 {[
                   'Mobile, web and AI under one roof',
@@ -119,47 +119,67 @@ export const About = () => {
                   'Support that continues after launch',
                 ].map((bullet) => (
                   <div key={bullet} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-amber flex items-center justify-center text-ink flex-shrink-0 shadow-sm">
-                      <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.5]" />
+                    <div className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="w-4 h-4 stroke-[2.5]" />
                     </div>
-                    <span className="text-sm sm:text-base font-bold text-ink">{bullet}</span>
+                    <span className="text-sm sm:text-base font-semibold text-slate-800">{bullet}</span>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Key Stats Row (24h, 5, 2, 4) */}
+          <div className="pt-10 border-t border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="space-y-1">
+              <div className="text-3xl sm:text-4xl font-black text-blue-600">24h</div>
+              <div className="text-xs sm:text-sm text-slate-500 font-medium">Quote turnaround</div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-3xl sm:text-4xl font-black text-slate-900">5</div>
+              <div className="text-xs sm:text-sm text-slate-500 font-medium">Core services</div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-3xl sm:text-4xl font-black text-slate-900">2</div>
+              <div className="text-xs sm:text-sm text-slate-500 font-medium">Offices: India & USA</div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-3xl sm:text-4xl font-black text-slate-900">4</div>
+              <div className="text-xs sm:text-sm text-slate-500 font-medium">Step delivery process</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3. MISSION & VISION (Side by Side) */}
-      <section className="py-16 md:py-20 bg-cream-light border-b border-borderCream">
+      <section className="py-16 md:py-24 bg-slate-50 border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Mission: Amber card with black icon square */}
-            <div className="bg-amber rounded-3xl p-8 sm:p-10 text-ink shadow-sm space-y-4 relative overflow-hidden">
-              <div className="w-12 h-12 rounded-xl bg-ink text-amber flex items-center justify-center shadow-md">
+            {/* Mission: Light card with blue icon square */}
+            <div className="bg-white rounded-3xl p-8 sm:p-10 text-slate-900 border border-slate-200/80 shadow-sm space-y-4 relative overflow-hidden">
+              <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-500/20">
                 <Sparkles className="w-6 h-6 stroke-[2]" />
               </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                 {content.missionTitle || 'Our Mission'}
               </h3>
-              <p className="text-base sm:text-lg font-medium text-ink/85 leading-relaxed">
+              <p className="text-base text-slate-600 leading-relaxed">
                 {content.missionText ||
-                  'To help businesses grow by delivering digital products that are fast, reliable and a pleasure to use.'}
+                  'Deliver reliable apps, websites and AI products that help businesses grow, with honest timelines, clear communication and engineering quality we are proud to stand behind.'}
               </p>
             </div>
 
-            {/* Vision: Black card with amber icon square */}
-            <div className="bg-ink rounded-3xl p-8 sm:p-10 text-white shadow-sm space-y-4 relative overflow-hidden">
-              <div className="w-12 h-12 rounded-xl bg-amber text-ink flex items-center justify-center shadow-md">
+            {/* Vision: Dark Navy card with blue icon square */}
+            <div className="bg-[#070B19] rounded-3xl p-8 sm:p-10 text-white border border-slate-800 shadow-md space-y-4 relative overflow-hidden">
+              <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-500/20">
                 <Compass className="w-6 h-6 stroke-[2]" />
               </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                 {content.visionTitle || 'Our Vision'}
               </h3>
-              <p className="text-base sm:text-lg font-medium text-neutral-300 leading-relaxed">
+              <p className="text-base text-slate-400 leading-relaxed">
                 {content.visionText ||
-                  'To be the most trusted technology partner for startups and growing companies, known for quality, honesty and long-term relationships.'}
+                  'To be the one technology partner startups and growing businesses trust from idea to launch, known for craft, transparency and long-term support.'}
               </p>
             </div>
           </div>
@@ -167,11 +187,11 @@ export const About = () => {
       </section>
 
       {/* 4. OUR VALUES */}
-      <section className="py-20 md:py-28 bg-white border-b border-borderCream">
+      <section className="py-20 md:py-28 bg-white border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <SectionHeading
-            eyebrow="● OUR VALUES"
-            title={content.valuesTitle || 'The principles behind every project'}
+            eyebrow="● Our Values"
+            title={content.valuesTitle || 'The principles behind everything we build'}
             description="How we write code, organize sprints, and partner with your team."
           />
 
@@ -180,36 +200,36 @@ export const About = () => {
               {
                 icon: Award,
                 title: 'Quality first',
-                desc: 'We care about clean code, polished design and details others skip.',
+                desc: 'We sweat the details so your product feels polished, fast and dependable.',
               },
               {
                 icon: Eye,
                 title: 'Radical transparency',
-                desc: 'Clear scope, honest timelines and no surprises along the way.',
+                desc: 'Clear scope, honest timelines and open communication at every stage of the project.',
               },
               {
                 icon: Zap,
                 title: 'Fast, yet stable',
-                desc: 'Agile delivery with regular demos, testing and reliable releases.',
+                desc: 'Agile delivery without cutting corners on testing or long-term maintainability.',
               },
               {
                 icon: HeartHandshake,
                 title: 'Partnership',
-                desc: 'We treat your product like our own and stay beyond launch day.',
+                desc: 'We work as an extension of your team, not just another vendor on the invoice.',
               },
             ].map((v) => {
               const IconComp = v.icon;
               return (
                 <div
                   key={v.title}
-                  className="bg-cream-light border border-borderCream rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-soft hover:border-amber-300"
+                  className="bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-200"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-5 shadow-sm shadow-blue-500/20">
                       <IconComp className="w-5 h-5 stroke-[2]" />
                     </div>
-                    <h3 className="text-lg font-extrabold text-ink mb-2">{v.title}</h3>
-                    <p className="text-sm text-muted leading-relaxed">{v.desc}</p>
+                    <h3 className="text-lg font-extrabold text-slate-900 mb-2">{v.title}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{v.desc}</p>
                   </div>
                 </div>
               );
@@ -218,63 +238,7 @@ export const About = () => {
         </div>
       </section>
 
-      {/* 5. WHAT WE DO (Expertise at a glance) */}
-      <section className="py-20 md:py-28 bg-cream-light border-b border-borderCream">
-        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          <SectionHeading
-            eyebrow="● WHAT WE DO"
-            title={content.expertiseTitle || 'Our expertise at a glance'}
-            description="Proven technical depth across mobile platforms, web infrastructure, content management and AI integration."
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: 'Mobile Apps',
-                items: ['Native Android', 'Native iOS', 'Flutter', 'React Native'],
-              },
-              {
-                title: 'Web Development',
-                items: [
-                  'React & Next.js',
-                  'Vue.js & Angular',
-                  'Node.js & Express',
-                  'PHP & Laravel',
-                ],
-              },
-              {
-                title: 'CMS & No-Code',
-                items: ['WordPress', 'Wix', 'Webflow'],
-              },
-              {
-                title: 'AI & Design',
-                items: ['AI Integration', 'UI/UX Design', 'Graphic Design'],
-              },
-            ].map((col) => (
-              <div
-                key={col.title}
-                className="bg-white rounded-2xl border border-borderCream p-6 sm:p-7 space-y-4"
-              >
-                <h3 className="text-lg font-extrabold text-ink pb-2 border-b border-cream-light">
-                  {col.title}
-                </h3>
-                <ul className="space-y-3">
-                  {col.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-sm font-semibold text-neutral-700">
-                      <div className="w-4 h-4 rounded-full bg-amber flex items-center justify-center text-ink flex-shrink-0">
-                        <CheckCircle2 className="w-3.5 h-3.5 stroke-[3]" />
-                      </div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. REUSABLE CTA BAND */}
+      {/* Global CTA Band */}
       <CtaBand />
     </>
   );

@@ -53,9 +53,9 @@ export const ProjectForm = () => {
   ];
 
   const bgColors = [
-    { value: 'cream', label: 'Cream (#FDF6E4)' },
-    { value: 'amber', label: 'Amber (#F5A93B)' },
-    { value: 'black', label: 'Black (#0D0D0D)' },
+    { value: 'cream', label: 'Light Slate / White' },
+    { value: 'amber', label: 'Electric Blue' },
+    { value: 'black', label: 'Dark Navy' },
   ];
 
   const {
@@ -170,8 +170,8 @@ export const ProjectForm = () => {
   if (isEditing && isLoadingData) {
     return (
       <div className="py-24 flex items-center justify-center">
-        <div className="flex items-center gap-3 text-muted text-sm font-semibold">
-          <Loader2 className="w-6 h-6 animate-spin text-amber-500" />
+        <div className="flex items-center gap-3 text-slate-500 text-sm font-semibold">
+          <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
           Loading project data...
         </div>
       </div>
@@ -181,19 +181,19 @@ export const ProjectForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 animate-fade-in max-w-5xl">
       {/* Top Header */}
-      <div className="flex items-center justify-between border-b border-borderCream pb-5">
+      <div className="flex items-center justify-between border-b border-slate-200/80 pb-5">
         <div className="flex items-center gap-4">
           <Link
             to="/projects"
-            className="p-2 rounded-xl text-muted hover:text-ink hover:bg-neutral-100 transition-colors"
+            className="p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-extrabold text-ink tracking-tight">
+            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
               {isEditing ? 'Edit Project' : 'New Project'}
             </h1>
-            <p className="text-xs text-muted">
+            <p className="text-xs text-slate-500">
               Configure details, illustrations, tags, and client deliverables.
             </p>
           </div>
@@ -202,14 +202,14 @@ export const ProjectForm = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/projects"
-            className="px-4 py-2 rounded-xl border border-borderCream text-xs font-semibold text-muted hover:text-ink hover:bg-neutral-50 transition-colors"
+            className="px-4 py-2 rounded-xl border border-slate-200/80 text-xs font-semibold text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={saveMutation.isPending}
-            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-xs shadow-soft transition-all disabled:opacity-60"
+            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-xs shadow-soft transition-all disabled:opacity-60"
           >
             {saveMutation.isPending ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -226,18 +226,18 @@ export const ProjectForm = () => {
         {/* Left Column: Core Fields */}
         <div className="lg:col-span-2 space-y-6">
           {/* Card 1: Basics */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
               Basic Details
             </h2>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Project Title *</label>
+              <label className="text-xs font-bold text-slate-900">Project Title *</label>
               <input
                 type="text"
                 {...register('title')}
                 placeholder="e.g. Bloom Finance App"
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
               {errors.title && (
                 <p className="text-xs text-red-600">{errors.title.message}</p>
@@ -246,20 +246,20 @@ export const ProjectForm = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-ink">URL Slug</label>
+                <label className="text-xs font-bold text-slate-900">URL Slug</label>
                 <input
                   type="text"
                   {...register('slug')}
                   placeholder="bloom-finance-app"
-                  className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-xs font-mono focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-xs font-mono focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-ink">Category *</label>
+                <label className="text-xs font-bold text-slate-900">Category *</label>
                 <select
                   {...register('category')}
-                  className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-white text-xs font-medium focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 >
                   {categories.map((c) => (
                     <option key={c} value={c}>
@@ -272,33 +272,33 @@ export const ProjectForm = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-ink">Tech Badge / Tag</label>
+                <label className="text-xs font-bold text-slate-900">Tech Badge / Tag</label>
                 <input
                   type="text"
                   {...register('techTag')}
                   placeholder="Flutter, iOS, Node.js"
-                  className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-xs focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-ink">Live URL (optional)</label>
+                <label className="text-xs font-bold text-slate-900">Live URL (optional)</label>
                 <input
                   type="url"
                   {...register('liveUrl')}
                   placeholder="https://client-demo.com"
-                  className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-xs focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Short Summary / Description *</label>
+              <label className="text-xs font-bold text-slate-900">Short Summary / Description *</label>
               <textarea
                 rows={3}
                 {...register('shortDescription')}
                 placeholder="One or two sentences describing the product..."
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
               {errors.shortDescription && (
                 <p className="text-xs text-red-600">{errors.shortDescription.message}</p>
@@ -306,54 +306,54 @@ export const ProjectForm = () => {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Full Overview</label>
+              <label className="text-xs font-bold text-slate-900">Full Overview</label>
               <textarea
                 rows={4}
                 {...register('fullDescription')}
                 placeholder="In-depth explanation of the scope, client objectives, and tech stack..."
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
           </div>
 
           {/* Card 2: Case Study Details (Challenge & Solution) */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
               Case Study Breakdown
             </h2>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">The Challenge</label>
+              <label className="text-xs font-bold text-slate-900">The Challenge</label>
               <textarea
                 rows={3}
                 {...register('challenge')}
                 placeholder="What hurdles did the startup or enterprise face prior to the project?"
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Our Solution</label>
+              <label className="text-xs font-bold text-slate-900">Our Solution</label>
               <textarea
                 rows={3}
                 {...register('solution')}
                 placeholder="How did our engineering & design team tackle the challenge?"
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
           </div>
 
           {/* Card 3: Dynamic Features & Results */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-6">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-6">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-muted">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
                   Key Results & Metrics
                 </label>
                 <button
                   type="button"
                   onClick={() => setResultsList([...resultsList, ''])}
-                  className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1"
+                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
                 >
                   <Plus className="w-3.5 h-3.5" /> Add Result
                 </button>
@@ -370,13 +370,13 @@ export const ProjectForm = () => {
                         setResultsList(copy);
                       }}
                       placeholder="e.g. 100k+ downloads within 30 days"
-                      className="flex-1 px-3 py-2 text-xs rounded-xl border border-borderCream bg-white"
+                      className="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-white"
                     />
                     {resultsList.length > 1 && (
                       <button
                         type="button"
                         onClick={() => setResultsList(resultsList.filter((_, i) => i !== idx))}
-                        className="p-2 text-muted hover:text-red-600 rounded-lg hover:bg-red-50"
+                        className="p-2 text-slate-500 hover:text-red-600 rounded-lg hover:bg-red-50"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -388,13 +388,13 @@ export const ProjectForm = () => {
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-muted">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
                   Highlighted Features
                 </label>
                 <button
                   type="button"
                   onClick={() => setFeaturesList([...featuresList, ''])}
-                  className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1"
+                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
                 >
                   <Plus className="w-3.5 h-3.5" /> Add Feature
                 </button>
@@ -411,13 +411,13 @@ export const ProjectForm = () => {
                         setFeaturesList(copy);
                       }}
                       placeholder="e.g. Real-time portfolio sync with biometric security"
-                      className="flex-1 px-3 py-2 text-xs rounded-xl border border-borderCream bg-white"
+                      className="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-white"
                     />
                     {featuresList.length > 1 && (
                       <button
                         type="button"
                         onClick={() => setFeaturesList(featuresList.filter((_, i) => i !== idx))}
-                        className="p-2 text-muted hover:text-red-600 rounded-lg hover:bg-red-50"
+                        className="p-2 text-slate-500 hover:text-red-600 rounded-lg hover:bg-red-50"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -432,16 +432,16 @@ export const ProjectForm = () => {
         {/* Right Column: Visual Mockup Settings & Publishing */}
         <div className="space-y-6">
           {/* Publishing Card */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
               Publishing Options
             </h2>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Status</label>
+              <label className="text-xs font-bold text-slate-900">Status</label>
               <select
                 {...register('status')}
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-white text-xs font-semibold focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs font-semibold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
                 <option value="published">Published</option>
                 <option value="draft">Draft</option>
@@ -453,35 +453,35 @@ export const ProjectForm = () => {
                 type="checkbox"
                 id="featured"
                 {...register('featured')}
-                className="w-4 h-4 rounded text-amber-500 focus:ring-amber-400 border-borderCream"
+                className="w-4 h-4 rounded text-blue-600 focus:ring-amber-400 border-slate-200/80"
               />
-              <label htmlFor="featured" className="text-xs font-bold text-ink cursor-pointer">
+              <label htmlFor="featured" className="text-xs font-bold text-slate-900 cursor-pointer">
                 Feature on Homepage Showcase
               </label>
             </div>
 
             <div className="space-y-1.5 pt-2">
-              <label className="text-xs font-bold text-ink">Display Order</label>
+              <label className="text-xs font-bold text-slate-900">Display Order</label>
               <input
                 type="number"
                 {...register('order', { valueAsNumber: true })}
-                className="w-full px-4 py-2 rounded-xl border border-borderCream bg-[#FBF7EE]/30 text-xs font-mono"
+                className="w-full px-4 py-2 rounded-xl border border-slate-200/80 bg-slate-50/60 text-xs font-mono"
               />
-              <p className="text-[11px] text-muted">Lower numbers appear first.</p>
+              <p className="text-[11px] text-slate-500">Lower numbers appear first.</p>
             </div>
           </div>
 
           {/* Visual Presentation Card */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
               Visual Illustration
             </h2>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Mockup Shape</label>
+              <label className="text-xs font-bold text-slate-900">Mockup Shape</label>
               <select
                 {...register('mockupStyle')}
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-white text-xs font-medium focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
                 {mockupStyles.map((m) => (
                   <option key={m.value} value={m.value}>
@@ -489,16 +489,16 @@ export const ProjectForm = () => {
                   </option>
                 ))}
               </select>
-              <p className="text-[11px] text-muted">
+              <p className="text-[11px] text-slate-500">
                 Renders a stylized SVG graphic if no uploaded thumbnail is provided.
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Card Background Accent</label>
+              <label className="text-xs font-bold text-slate-900">Card Background Accent</label>
               <select
                 {...register('bgColor')}
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-white text-xs font-medium focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
                 {bgColors.map((bg) => (
                   <option key={bg.value} value={bg.value}>

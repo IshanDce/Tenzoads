@@ -8,7 +8,6 @@ import {
   Edit2,
   Trash2,
   ExternalLink,
-  SlidersHorizontal,
   FolderKanban,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -80,18 +79,18 @@ export const Projects = () => {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight flex items-center gap-2">
-            <FolderKanban className="w-7 h-7 text-amber-500" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <FolderKanban className="w-7 h-7 text-blue-600" />
             Projects Portfolio
           </h1>
-          <p className="text-xs sm:text-sm text-muted mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Manage your case studies, mockups, and client showcases.
           </p>
         </div>
 
         <Link
           to="/projects/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-xs shadow-soft transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-xs transition-all hover:scale-[1.02]"
         >
           <Plus className="w-4 h-4" />
           Add New Project
@@ -99,10 +98,10 @@ export const Projects = () => {
       </div>
 
       {/* Filters & Search Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-borderCream shadow-soft flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-soft flex flex-col md:flex-row gap-4 items-center justify-between">
         {/* Search */}
         <div className="relative w-full md:w-80">
-          <Search className="w-4 h-4 text-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={search}
@@ -111,7 +110,7 @@ export const Projects = () => {
               setPage(1);
             }}
             placeholder="Search projects..."
-            className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/40 focus:bg-white focus:outline-none focus:border-amber-500"
+            className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50/60 focus:bg-white text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
           />
         </div>
 
@@ -124,7 +123,7 @@ export const Projects = () => {
               setCategory(e.target.value);
               setPage(1);
             }}
-            className="px-3 py-2 text-xs rounded-xl border border-borderCream bg-white text-ink focus:outline-none focus:border-amber-500 font-medium"
+            className="px-3.5 py-2 text-xs rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 font-semibold shadow-xs cursor-pointer"
           >
             {categories.map((c) => (
               <option key={c} value={c}>
@@ -140,7 +139,7 @@ export const Projects = () => {
               setStatus(e.target.value);
               setPage(1);
             }}
-            className="px-3 py-2 text-xs rounded-xl border border-borderCream bg-white text-ink focus:outline-none focus:border-amber-500 font-medium"
+            className="px-3.5 py-2 text-xs rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 font-semibold shadow-xs cursor-pointer"
           >
             <option value="">All Statuses</option>
             <option value="published">Published</option>
@@ -150,10 +149,10 @@ export const Projects = () => {
       </div>
 
       {/* Projects Table */}
-      <div className="bg-white rounded-2xl border border-borderCream shadow-soft overflow-hidden">
+      <div className="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#FBF7EE]/60 text-muted uppercase tracking-wider font-semibold border-b border-borderCream">
+            <thead className="bg-slate-50/90 text-slate-500 uppercase tracking-wider font-bold text-[11px] border-b border-slate-200/80">
               <tr>
                 <th className="py-3.5 px-6">Project</th>
                 <th className="py-3.5 px-6">Category</th>
@@ -164,48 +163,48 @@ export const Projects = () => {
                 <th className="py-3.5 px-6 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-borderCream">
+            <tbody className="divide-y divide-slate-100">
               {isLoading ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-muted">
+                  <td colSpan={7} className="py-12 text-center text-slate-400">
                     <div className="flex items-center justify-center gap-2">
-                      <div className="w-5 h-5 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
                       Loading projects...
                     </div>
                   </td>
                 </tr>
               ) : projects.length > 0 ? (
                 projects.map((p) => (
-                  <tr key={p._id} className="hover:bg-neutral-50/70 transition-colors">
+                  <tr key={p._id} className="hover:bg-slate-50/80 transition-colors">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
                         {p.thumbnail ? (
                           <img
                             src={p.thumbnail}
                             alt={p.title}
-                            className="w-10 h-10 rounded-lg object-contain p-0.5 border border-borderCream bg-[#FBF7EE] flex-shrink-0"
+                            className="w-10 h-10 rounded-xl object-contain p-0.5 border border-slate-200 bg-slate-50 flex-shrink-0"
                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
                           />
                         ) : (
-                          <div className="w-10 h-10 rounded-lg bg-cream flex items-center justify-center text-amber-700 font-bold flex-shrink-0">
+                          <div className="w-10 h-10 rounded-xl bg-blue-50/80 border border-blue-100/80 flex items-center justify-center text-blue-600 font-bold flex-shrink-0 shadow-2xs">
                             {p.mockupStyle?.charAt(0)?.toUpperCase() || 'P'}
                           </div>
                         )}
                         <div>
-                          <div className="font-bold text-ink text-sm flex items-center gap-1.5">
+                          <div className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
                             {p.title}
                             {p.liveUrl && (
                               <a
                                 href={p.liveUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="text-muted hover:text-amber-600"
+                                className="text-slate-400 hover:text-blue-600 transition-colors"
                               >
                                 <ExternalLink className="w-3 h-3" />
                               </a>
                             )}
                           </div>
-                          <div className="text-muted text-[11px] truncate max-w-xs">
+                          <div className="text-slate-500 text-[11px] truncate max-w-xs mt-0.5">
                             {p.techTag || p.description}
                           </div>
                         </div>
@@ -213,10 +212,12 @@ export const Projects = () => {
                     </td>
 
                     <td className="py-4 px-6">
-                      <span className="font-semibold text-ink">{p.category}</span>
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200/60">
+                        {p.category}
+                      </span>
                     </td>
 
-                    <td className="py-4 px-6 text-muted capitalize">
+                    <td className="py-4 px-6 text-slate-500 capitalize">
                       {p.mockupStyle || p.mockupType || 'browser'}
                     </td>
 
@@ -228,11 +229,11 @@ export const Projects = () => {
                         title={p.featured ? 'Unmark featured' : 'Mark featured'}
                         className={`p-1.5 rounded-lg transition-colors ${
                           p.featured
-                            ? 'text-amber-500 hover:bg-amber-50'
-                            : 'text-neutral-300 hover:text-neutral-500 hover:bg-neutral-100'
+                            ? 'text-blue-600 hover:bg-blue-50'
+                            : 'text-slate-300 hover:text-slate-500 hover:bg-slate-100'
                         }`}
                       >
-                        <Star className={`w-4 h-4 ${p.featured ? 'fill-amber-500' : ''}`} />
+                        <Star className={`w-4 h-4 ${p.featured ? 'fill-blue-500 text-blue-600' : 'text-slate-300'}`} />
                       </button>
                     </td>
 
@@ -240,15 +241,15 @@ export const Projects = () => {
                       <span
                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold capitalize ${
                           p.status === 'published'
-                            ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
-                            : 'bg-neutral-100 text-neutral-600 border border-neutral-200'
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200/80'
+                            : 'bg-slate-100 text-slate-600 border border-slate-200'
                         }`}
                       >
                         {p.status || 'published'}
                       </span>
                     </td>
 
-                    <td className="py-4 px-6 text-center font-mono text-muted">
+                    <td className="py-4 px-6 text-center font-mono text-slate-500">
                       {p.order ?? p.sortOrder ?? 0}
                     </td>
 
@@ -256,14 +257,14 @@ export const Projects = () => {
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           to={`/projects/${p._id}/edit`}
-                          className="p-1.5 rounded-lg text-muted hover:text-ink hover:bg-neutral-100 transition-colors"
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                           title="Edit Project"
                         >
                           <Edit2 className="w-4 h-4" />
                         </Link>
                         <button
                           onClick={() => setDeleteTarget(p)}
-                          className="p-1.5 rounded-lg text-muted hover:text-red-600 hover:bg-red-50 transition-colors"
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
                           title="Delete Project"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -274,7 +275,7 @@ export const Projects = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-muted">
+                  <td colSpan={7} className="py-12 text-center text-slate-400">
                     No projects found matching the criteria.
                   </td>
                 </tr>
@@ -306,4 +307,3 @@ export const Projects = () => {
 };
 
 export default Projects;
-

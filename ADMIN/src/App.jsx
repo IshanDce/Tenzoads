@@ -25,10 +25,10 @@ const Profile = lazy(() => import('./pages/Profile'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const LoadingFallback = () => (
-  <div className="min-h-[50vh] flex items-center justify-center">
+  <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center">
     <div className="flex flex-col items-center gap-3">
-      <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin" />
-      <span className="text-xs text-muted font-medium">Loading view...</span>
+      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <span className="text-xs text-slate-500 font-medium">Loading view...</span>
     </div>
   </div>
 );

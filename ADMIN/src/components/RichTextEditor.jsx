@@ -37,20 +37,20 @@ export const RichTextEditor = ({
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-amber-600 underline font-semibold hover:text-amber-700',
+          class: 'text-blue-600 underline font-semibold hover:text-blue-700',
         },
       }),
       Image.configure({
         allowBase64: true,
         HTMLAttributes: {
-          class: 'rounded-xl max-w-full my-4 shadow-sm border border-borderCream',
+          class: 'rounded-xl max-w-full my-4 shadow-sm border border-slate-200',
         },
       }),
     ],
     content,
     editorProps: {
       attributes: {
-        class: 'tiptap p-4 min-h-[220px] focus:outline-none text-ink text-sm leading-relaxed',
+        class: 'tiptap p-4 min-h-[220px] focus:outline-none text-slate-900 text-sm leading-relaxed',
       },
     },
     onUpdate: ({ editor }) => {
@@ -96,8 +96,8 @@ export const RichTextEditor = ({
       title={title}
       className={`p-1.5 rounded-lg text-xs font-semibold transition-all ${
         active
-          ? 'bg-amber-500 text-ink shadow-sm'
-          : 'text-muted hover:text-ink hover:bg-neutral-100 disabled:opacity-30'
+          ? 'bg-blue-600 text-white shadow-xs'
+          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 disabled:opacity-30'
       }`}
     >
       {children}
@@ -105,8 +105,8 @@ export const RichTextEditor = ({
   );
 
   return (
-    <div className="border border-borderCream rounded-2xl overflow-hidden bg-white shadow-soft focus-within:border-amber-500 transition-colors">
-      <div className="flex flex-wrap items-center gap-1 p-2 bg-cream/40 border-b border-borderCream">
+    <div className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-soft focus-within:border-blue-500 transition-colors">
+      <div className="flex flex-wrap items-center gap-1 p-2 bg-slate-50 border-b border-slate-200">
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           active={editor.isActive('bold')}
@@ -136,7 +136,7 @@ export const RichTextEditor = ({
           <Code className="w-4 h-4" />
         </ToolbarButton>
 
-        <div className="w-[1px] h-4 bg-borderCream mx-1" />
+        <div className="w-[1px] h-4 bg-slate-200 mx-1" />
 
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
@@ -160,7 +160,7 @@ export const RichTextEditor = ({
           <Heading3 className="w-4 h-4" />
         </ToolbarButton>
 
-        <div className="w-[1px] h-4 bg-borderCream mx-1" />
+        <div className="w-[1px] h-4 bg-slate-200 mx-1" />
 
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -190,7 +190,7 @@ export const RichTextEditor = ({
           <Minus className="w-4 h-4" />
         </ToolbarButton>
 
-        <div className="w-[1px] h-4 bg-borderCream mx-1" />
+        <div className="w-[1px] h-4 bg-slate-200 mx-1" />
 
         <ToolbarButton onClick={setLink} active={editor.isActive('link')} title="Insert Link">
           <Link2 className="w-4 h-4" />
@@ -208,7 +208,7 @@ export const RichTextEditor = ({
           <ImageIcon className="w-4 h-4" />
         </ToolbarButton>
 
-        <div className="w-[1px] h-4 bg-borderCream mx-1" />
+        <div className="w-[1px] h-4 bg-slate-200 mx-1" />
 
         <ToolbarButton
           onClick={() => editor.chain().focus().undo().run()}

@@ -84,27 +84,27 @@ export const Subscribers = () => {
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight flex items-center gap-2">
-            <Users className="w-7 h-7 text-amber-500" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <Users className="w-7 h-7 text-blue-600" />
             Newsletter Subscribers
           </h1>
-          <p className="text-xs sm:text-sm text-muted mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Users who subscribed to your tech & product insights.
           </p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-borderCream hover:border-amber-500 text-ink font-bold text-xs shadow-soft transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200/80 hover:border-blue-500 text-slate-900 font-bold text-xs shadow-soft transition-all"
         >
-          <Download className="w-4 h-4 text-amber-600" />
+          <Download className="w-4 h-4 text-blue-600" />
           Export to CSV
         </button>
       </div>
 
-      <div className="bg-white p-4 rounded-2xl border border-borderCream shadow-soft flex items-center justify-between">
+      <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-soft flex items-center justify-between">
         <div className="relative w-full max-w-sm">
-          <Search className="w-4 h-4 text-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={search}
@@ -113,19 +113,19 @@ export const Subscribers = () => {
               setPage(1);
             }}
             placeholder="Search email address..."
-            className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/40 focus:bg-white focus:outline-none focus:border-amber-500"
+            className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/70 focus:bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
           />
         </div>
 
-        <div className="text-xs text-muted font-medium">
-          Total Subscribers: <strong className="text-ink">{total}</strong>
+        <div className="text-xs text-slate-500 font-medium">
+          Total Subscribers: <strong className="text-slate-900">{total}</strong>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-borderCream shadow-soft overflow-hidden">
+      <div className="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#FBF7EE]/60 text-muted uppercase tracking-wider font-semibold border-b border-borderCream">
+            <thead className="bg-slate-50/80 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200/80">
               <tr>
                 <th className="py-3.5 px-6">Email Address</th>
                 <th className="py-3.5 px-6 text-center">Status</th>
@@ -133,23 +133,23 @@ export const Subscribers = () => {
                 <th className="py-3.5 px-6 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-borderCream">
+            <tbody className="divide-y divide-slate-100">
               {isLoading ? (
                 <tr>
-                  <td colSpan={4} className="py-12 text-center text-muted">
+                  <td colSpan={4} className="py-12 text-center text-slate-500">
                     <div className="flex items-center justify-center gap-2">
-                      <div className="w-5 h-5 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
                       Loading subscribers...
                     </div>
                   </td>
                 </tr>
               ) : subscribers.length > 0 ? (
                 subscribers.map((s) => (
-                  <tr key={s._id} className="hover:bg-neutral-50/70 transition-colors">
+                  <tr key={s._id} className="hover:bg-slate-50/80 transition-colors">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-amber-600" />
-                        <span className="font-bold text-ink">{s.email}</span>
+                        <Mail className="w-4 h-4 text-blue-600" />
+                        <span className="font-bold text-slate-900">{s.email}</span>
                       </div>
                     </td>
 
@@ -159,7 +159,7 @@ export const Subscribers = () => {
                         className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
                           s.isActive
                             ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'
-                            : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                            : 'bg-slate-100 text-slate-600 hover:bg-neutral-200'
                         }`}
                       >
                         {s.isActive ? (
@@ -169,21 +169,21 @@ export const Subscribers = () => {
                           </>
                         ) : (
                           <>
-                            <XCircle className="w-3.5 h-3.5 text-neutral-500" />
+                            <XCircle className="w-3.5 h-3.5 text-slate-500" />
                             Inactive
                           </>
                         )}
                       </button>
                     </td>
 
-                    <td className="py-4 px-6 text-muted">
+                    <td className="py-4 px-6 text-slate-500">
                       {new Date(s.createdAt).toLocaleDateString()}
                     </td>
 
                     <td className="py-4 px-6 text-right">
                       <button
                         onClick={() => setDeleteTarget(s)}
-                        className="p-1.5 text-muted hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
+                        className="p-1.5 text-slate-500 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
                         title="Delete Subscriber"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -193,7 +193,7 @@ export const Subscribers = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={4} className="py-12 text-center text-muted">
+                  <td colSpan={4} className="py-12 text-center text-slate-500">
                     No subscribers found.
                   </td>
                 </tr>

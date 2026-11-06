@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query';
 import {
   ArrowRight,
-  CheckCircle2,
   Box,
   Zap,
   Bot,
@@ -19,7 +18,6 @@ import ServiceCard from '../components/cards/ServiceCard';
 import ProjectCard from '../components/cards/ProjectCard';
 import FaqAccordion from '../components/common/FaqAccordion';
 import CtaBand from '../components/common/CtaBand';
-import { siteConfig } from '../config/site';
 import { getProjects } from '../services/api';
 import {
   usePageContent,
@@ -42,21 +40,21 @@ const whyIcons = {
 
 export const Home = () => {
   const { content: homeContent } = usePageContent('home', {
-    heroEyebrow: 'IT SERVICES & DIGITAL PRODUCT STUDIO',
-    heroTitle: 'We build Apps, Websites & AI Products that grow your business.',
+    heroEyebrow: 'IT Services & Digital Product Studio',
+    heroTitle: 'We build apps, websites & AI products that grow your business.',
     heroDescription:
-      'TenzoAds is a full-service IT company delivering native and cross-platform mobile apps, high-performance websites and custom AI integrations, UI/UX and graphic design all under one roof.',
-    buttonStart: 'Start Project',
+      'TenzoAds is a full-service IT company delivering mobile apps, websites, AI integration, UI/UX and graphic design, all under one roof.',
+    buttonStart: 'Start a Project',
     buttonWork: 'View Our Work',
-    techTitle: 'TECHNOLOGIES WE BUILD WITH',
-    servicesTitle: 'End-To-End IT Services For Modern Businesses',
+    techTitle: 'Technologies we build with',
+    servicesTitle: 'End-to-end IT services for modern businesses',
     servicesSubtitle:
-      'From First Idea Sketch To The Final Release: One Team Handles Design, Development And AI So You Focus On Growth.',
-    whyUsTitle: 'ONE PARTNER FOR DESIGN, DEVELOPMENT AND AI',
+      'From first sketch to final release, one team handles design, development and AI',
+    whyUsTitle: 'One partner for design, development and AI',
     whyUsSubtitle:
-      'We combine product strategy, design and cutting-edge engineering so you can launch fast and scale without friction.',
-    processTitle: 'A SIMPLE, PROVEN PROCESS FROM IDEA TO LAUNCH',
-    projectsTitle: "PROJECTS WE'RE PROUD OF",
+      'We combine product thinking, design craft and engineering depth so you never juggle vendors.',
+    processTitle: 'A simple, proven process from idea to launch',
+    projectsTitle: "Projects we're proud of",
   });
 
   const { technologies } = useTechnologies();
@@ -91,58 +89,62 @@ export const Home = () => {
         />
       </Helmet>
 
-      {/* 1. HERO SECTION (Cream background) */}
-      <section className="bg-cream pt-12 pb-20 md:pt-16 md:pb-28 border-b border-borderCream">
-        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 1. HERO SECTION (Dark Navy with Ambient Blue Glow) */}
+      <section className="relative bg-[#070B19] text-white pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden border-b border-slate-900">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute -top-20 left-10 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-7 space-y-6 text-left">
               {/* Eyebrow Chip */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 border border-amber-300 text-ink text-xs font-bold tracking-wider uppercase">
-                <span className="w-2 h-2 rounded-full bg-amber flex-shrink-0 animate-ping" />
-                <span>{homeContent.heroEyebrow || 'IT SERVICES & DIGITAL PRODUCT STUDIO'}</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-blue-500/30 text-blue-400 text-xs font-bold tracking-wide">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span>{homeContent.heroEyebrow || 'IT Services & Digital Product Studio'}</span>
               </div>
 
               {/* H1 Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-ink tracking-tight leading-[1.12]">
-                {homeContent.heroTitle || 'We build Apps, Websites & AI Products that grow your business.'}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
+                {homeContent.heroTitle || 'We build apps, websites & AI products that grow your business.'}
               </h1>
 
               {/* Short Paragraph */}
-              <p className="text-base sm:text-lg text-muted max-w-xl leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
                 {homeContent.heroDescription ||
-                  'TenzoAds is a full-service IT company delivering native and cross-platform mobile apps, high-performance websites and custom AI integrations, UI/UX and graphic design all under one roof.'}
+                  'TenzoAds is a full-service IT company delivering mobile apps, websites, AI integration, UI/UX and graphic design, all under one roof.'}
               </p>
 
               {/* CTA Buttons */}
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   to="/contact"
-                  className="px-8 py-3.5 bg-ink text-white hover:bg-neutral-800 rounded-full font-bold text-sm sm:text-base transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+                  className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-200 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0"
                 >
-                  {homeContent.buttonStart || 'Start Project'}
+                  {homeContent.buttonStart || 'Start a Project'}
                 </Link>
                 <Link
                   to="/portfolio"
-                  className="px-8 py-3.5 border-2 border-ink text-ink hover:bg-ink hover:text-white rounded-full font-bold text-sm sm:text-base transition-all duration-200"
+                  className="px-8 py-3.5 border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-200"
                 >
                   {homeContent.buttonWork || 'View Our Work'}
                 </Link>
               </div>
 
-              {/* Three Trust Badges */}
-              <div className="pt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs sm:text-sm font-semibold text-neutral-700">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber flex-shrink-0" />
-                  <span>Free consultation</span>
+              {/* Three Stat Badges (24 Hours, Free, 5) */}
+              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg">
+                <div>
+                  <div className="text-2xl sm:text-3xl font-black text-white">24 Hours</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Quote turnaround</div>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber flex-shrink-0" />
-                  <span>Transparent pricing</span>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-black text-white">Free</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Consultation</div>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber flex-shrink-0" />
-                  <span>Agile delivery</span>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-black text-white">5</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Core services</div>
                 </div>
               </div>
             </div>
@@ -156,73 +158,73 @@ export const Home = () => {
       </section>
 
       {/* 2. TECHNOLOGIES WE BUILD WITH */}
-      <section className="py-14 bg-white border-b border-borderCream">
+      <section className="py-14 bg-white border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-muted block">
-            {homeContent.techTitle || 'TECHNOLOGIES WE BUILD WITH'}
+          <span className="text-xs font-extrabold uppercase tracking-widest text-slate-400 block">
+            {homeContent.techTitle || 'Technologies we build with'}
           </span>
 
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-4xl mx-auto">
-              {
-                technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="bg-amber hover:bg-amber-hover text-ink text-xs sm:text-sm font-bold px-5 py-2 rounded-full shadow-sm transition-all duration-200 cursor-default hover:scale-105"
-                  >
-                    {tech}
-                  </span>
-                ))
-              }
+            {technologies.map((tech) => (
+              <span
+                key={tech}
+                className="bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-5 py-2 rounded-full shadow-sm hover:border-blue-500 hover:text-blue-600 transition-all duration-200 cursor-default hover:scale-105"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
       {/* 3. OUR SERVICES */}
-      <section className="py-20 md:py-28 bg-cream-light border-b border-borderCream">
+      <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           <SectionHeading
-            eyebrow="● OUR SERVICES"
-            title={homeContent.servicesTitle || 'End-To-End IT Services For Modern Businesses'}
+            eyebrow="● Our Services"
+            title={homeContent.servicesTitle || 'End-to-end IT services for modern businesses'}
             description={
               homeContent.servicesSubtitle ||
-              'From First Idea Sketch To The Final Release: One Team Handles Design, Development And AI So You Focus On Growth.'
+              'From first sketch to final release, one team handles design, development and AI'
             }
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {
-                services.map((service) => (
-                  <ServiceCard key={service._id || service.id || service.title} service={service} />
-                ))
-              }
+            {services.map((service, idx) => (
+              <ServiceCard
+                key={service._id || service.id || service.title}
+                service={service}
+                index={idx}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 4. WHY TENZOADS (Black Section) */}
-      <section className="py-20 md:py-28 bg-ink text-white">
+      {/* 4. WHY TENZOADS (Dark Navy Section) */}
+      <section className="py-20 md:py-28 bg-[#070B19] text-white border-b border-slate-900">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Header */}
             <div className="lg:col-span-5 space-y-5 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-amber text-xs font-bold uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber" />
-                <span>WHY TENZOADS</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/70 border border-blue-800/50 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span>Why TenzoAds</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18]">
-                {homeContent.whyUsTitle || 'ONE PARTNER FOR DESIGN, DEVELOPMENT AND AI'}
+                {homeContent.whyUsTitle || 'One partner for design, development and AI'}
               </h2>
 
-              <p className="text-base text-neutral-400 leading-relaxed max-w-md">
+              <p className="text-base text-slate-400 leading-relaxed max-w-md">
                 {homeContent.whyUsSubtitle ||
-                  'We combine product strategy, design and cutting-edge engineering so you can launch fast and scale without friction.'}
+                  'We combine product thinking, design craft and engineering depth so you never juggle vendors.'}
               </p>
 
               <div className="pt-4">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-amber hover:text-amber-hover transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors"
                 >
                   <span>Learn more about our team & philosophy</span>
                   <ArrowRight className="w-4 h-4" />
@@ -232,80 +234,76 @@ export const Home = () => {
 
             {/* Right 2x2 Grid of dark cards */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {
-                  whyUsItems.map((item) => {
-                    const IconComponent = whyIcons[item.icon] || Box;
-                    return (
-                      <div
-                        key={item.title}
-                        className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 hover:border-amber/50 transition-all duration-300"
-                      >
-                        <div className="w-10 h-10 rounded-xl bg-amber text-ink flex items-center justify-center font-bold mb-4 shadow-sm">
-                          <IconComponent className="w-5 h-5 stroke-[2]" />
-                        </div>
-                        <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                        <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                    );
-                  })
-                }
+              {whyUsItems.map((item) => {
+                const IconComponent = whyIcons[item.icon] || Box;
+                return (
+                  <div
+                    key={item.title}
+                    className="bg-[#111827]/80 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold mb-4 shadow-md shadow-blue-500/20">
+                      <IconComponent className="w-5 h-5 stroke-[2]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* 5. HOW WE WORK */}
-      <section className="py-20 md:py-28 bg-white border-b border-borderCream">
+      <section className="py-20 md:py-28 bg-white border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <SectionHeading
-            eyebrow="● HOW WE WORK"
-            title={homeContent.processTitle || 'A SIMPLE, PROVEN PROCESS FROM IDEA TO LAUNCH'}
+            eyebrow="● How We Work"
+            title={homeContent.processTitle || 'A simple, proven process from idea to launch'}
             description="Clear phases with predictable milestones, transparent progress updates, and zero surprises."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-              {
-                steps.map((step) => (
-                  <div
-                    key={step.number || step.order}
-                    className="bg-cream-light border border-borderCream rounded-2xl p-6 sm:p-7 relative transition-all duration-300 hover:shadow-soft hover:border-amber-300"
-                  >
-                    {/* Amber number circle */}
-                    <div className="w-10 h-10 rounded-full bg-amber text-ink font-extrabold text-base flex items-center justify-center mb-5 shadow-sm">
-                      {step.number || step.order}
-                    </div>
+            {steps.map((step) => (
+              <div
+                key={step.number || step.order}
+                className="bg-slate-50 border border-slate-100 rounded-2xl p-6 sm:p-7 relative transition-all duration-300 hover:shadow-soft hover:border-blue-200"
+              >
+                {/* Blue number circle */}
+                <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-extrabold text-base flex items-center justify-center mb-5 shadow-md shadow-blue-500/20">
+                  {step.number || step.order}
+                </div>
 
-                    <h3 className="text-xl font-extrabold text-ink tracking-tight mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-muted leading-relaxed">{step.description}</p>
-                  </div>
-                ))
-              }
+                <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{step.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* 6. PROJECTS WE'RE PROUD OF */}
-      <section className="py-20 md:py-28 bg-cream-light border-b border-borderCream">
+      <section className="py-20 md:py-28 bg-slate-50 border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-ink text-xs font-bold uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber" />
-                <span>OUR WORK</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-bold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                <span>Selected Work</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-ink tracking-tight">
-                {homeContent.projectsTitle || "PROJECTS WE'RE PROUD OF"}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+                {homeContent.projectsTitle || "Projects we're proud of"}
               </h2>
             </div>
 
             <Link
               to="/portfolio"
-              className="inline-flex items-center justify-center px-6 py-2.5 border border-ink text-ink hover:bg-ink hover:text-white rounded-full font-bold text-sm transition-all duration-200 self-start md:self-auto"
+              className="inline-flex items-center justify-center px-6 py-2.5 border border-slate-300 text-slate-800 hover:border-slate-900 hover:text-slate-900 rounded-full font-bold text-sm transition-all duration-200 self-start md:self-auto"
             >
               View all projects
             </Link>
@@ -314,7 +312,7 @@ export const Home = () => {
           {/* 3 Featured Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {loadingProjects ? (
-              <div className="col-span-3 text-center py-12 text-muted font-medium">
+              <div className="col-span-3 text-center py-12 text-slate-400 font-medium">
                 Loading featured projects...
               </div>
             ) : (
@@ -327,28 +325,28 @@ export const Home = () => {
       </section>
 
       {/* 7. FREQUENTLY ASKED QUESTIONS */}
-      <section className="py-20 md:py-28 bg-white border-b border-borderCream">
+      <section className="py-20 md:py-28 bg-white border-b border-slate-100">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left column */}
             <div className="lg:col-span-5 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-ink text-xs font-bold uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-bold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
                 <span>FAQ</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 Frequently asked questions
               </h2>
 
-              <p className="text-base text-muted leading-relaxed">
+              <p className="text-base text-slate-600 leading-relaxed">
                 Got questions? Here's what you need to know. Can't find your question? Ask us.
               </p>
 
               <div className="pt-2">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center px-7 py-3 bg-ink text-white hover:bg-neutral-800 rounded-full font-bold text-sm transition-all duration-200 shadow-sm"
+                  className="inline-flex items-center px-7 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-sm transition-all duration-200 shadow-md shadow-blue-500/20"
                 >
                   Ask a question
                 </Link>
@@ -370,4 +368,3 @@ export const Home = () => {
 };
 
 export default Home;
-

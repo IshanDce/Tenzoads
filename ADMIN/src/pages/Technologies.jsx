@@ -100,18 +100,18 @@ export const Technologies = () => {
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight flex items-center gap-2">
-            <Cpu className="w-7 h-7 text-amber-500" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <Cpu className="w-7 h-7 text-blue-600" />
             Technologies We Build With
           </h1>
-          <p className="text-xs sm:text-sm text-muted mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             The marquee pill badges displayed right beneath the Homepage hero.
           </p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-xs shadow-soft transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-xs shadow-soft transition-all"
         >
           <Plus className="w-4 h-4" />
           Add Technology
@@ -119,17 +119,17 @@ export const Technologies = () => {
       </div>
 
       {/* Pill Preview Box */}
-      <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-3">
-        <h2 className="text-xs font-bold uppercase tracking-wider text-muted">
+      <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-3">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">
           Live Homepage Preview
         </h2>
-        <div className="flex flex-wrap gap-2.5 p-4 bg-[#FDF6E4]/50 rounded-xl border border-borderCream">
+        <div className="flex flex-wrap gap-2.5 p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
           {technologies
             .filter((t) => t.isActive)
             .map((t) => (
               <span
                 key={t._id}
-                className="px-4 py-1.5 rounded-full bg-amber-500 text-ink font-extrabold text-xs shadow-2xs tracking-wider uppercase"
+                className="px-4 py-1.5 rounded-full bg-blue-600 text-white font-extrabold text-xs shadow-2xs tracking-wider uppercase"
               >
                 {t.name}
               </span>
@@ -138,10 +138,10 @@ export const Technologies = () => {
       </div>
 
       {/* Technologies Table */}
-      <div className="bg-white rounded-2xl border border-borderCream shadow-soft overflow-hidden">
+      <div className="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#FBF7EE]/60 text-muted uppercase tracking-wider font-semibold border-b border-borderCream">
+            <thead className="bg-slate-50/80 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200/80">
               <tr>
                 <th className="py-3.5 px-6">Name</th>
                 <th className="py-3.5 px-6 text-center">Status</th>
@@ -149,19 +149,19 @@ export const Technologies = () => {
                 <th className="py-3.5 px-6 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-borderCream">
+            <tbody className="divide-y divide-slate-100">
               {isLoading ? (
                 <tr>
-                  <td colSpan={4} className="py-12 text-center text-muted">
-                    <Loader2 className="w-5 h-5 animate-spin mx-auto text-amber-500 mb-2" />
+                  <td colSpan={4} className="py-12 text-center text-slate-500">
+                    <Loader2 className="w-5 h-5 animate-spin mx-auto text-blue-600 mb-2" />
                     Loading technologies...
                   </td>
                 </tr>
               ) : technologies.length > 0 ? (
                 technologies.map((t) => (
-                  <tr key={t._id} className="hover:bg-neutral-50/70 transition-colors">
+                  <tr key={t._id} className="hover:bg-slate-50/80 transition-colors">
                     <td className="py-3.5 px-6">
-                      <span className="font-bold text-ink text-sm">{t.name}</span>
+                      <span className="font-bold text-slate-900 text-sm">{t.name}</span>
                     </td>
 
                     <td className="py-3.5 px-6 text-center">
@@ -170,14 +170,14 @@ export const Technologies = () => {
                         className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${
                           t.isActive
                             ? 'bg-emerald-100 text-emerald-800'
-                            : 'bg-neutral-100 text-neutral-600'
+                            : 'bg-slate-100 text-slate-600'
                         }`}
                       >
                         {t.isActive ? 'Active' : 'Hidden'}
                       </button>
                     </td>
 
-                    <td className="py-3.5 px-6 text-center font-mono text-muted">
+                    <td className="py-3.5 px-6 text-center font-mono text-slate-500">
                       #{t.order}
                     </td>
 
@@ -185,14 +185,14 @@ export const Technologies = () => {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => handleOpenEdit(t)}
-                          className="p-1.5 text-muted hover:text-ink rounded-lg hover:bg-neutral-100"
+                          className="p-1.5 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-100"
                           title="Edit"
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => setDeleteTarget(t)}
-                          className="p-1.5 text-muted hover:text-red-600 rounded-lg hover:bg-red-50"
+                          className="p-1.5 text-slate-500 hover:text-red-600 rounded-lg hover:bg-red-50"
                           title="Delete"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -203,7 +203,7 @@ export const Technologies = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={4} className="py-12 text-center text-muted">
+                  <td colSpan={4} className="py-12 text-center text-slate-500">
                     No technologies added yet.
                   </td>
                 </tr>
@@ -217,16 +217,16 @@ export const Technologies = () => {
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/40 backdrop-blur-xs">
           <div
-            className="w-full max-w-sm bg-white rounded-2xl shadow-xl border border-borderCream p-6 space-y-4 animate-scale-in"
+            className="w-full max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 space-y-4 animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-borderCream pb-3">
-              <h2 className="text-base font-bold text-ink">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
+              <h2 className="text-base font-bold text-slate-900">
                 {editingItem ? 'Edit Technology' : 'Add Technology'}
               </h2>
               <button
                 onClick={() => setModalOpen(false)}
-                className="text-muted hover:text-ink p-1 rounded-lg"
+                className="text-slate-500 hover:text-slate-900 p-1 rounded-lg"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -234,21 +234,21 @@ export const Technologies = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-ink">Technology Name *</label>
+                <label className="text-xs font-bold text-slate-900">Technology Name *</label>
                 <input
                   type="text"
                   {...register('name', { required: true })}
                   placeholder="e.g. Flutter"
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white focus:outline-none focus:border-amber-500 font-bold"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 font-bold"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-ink">Display Order</label>
+                <label className="text-xs font-bold text-slate-900">Display Order</label>
                 <input
                   type="number"
                   {...register('order')}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30 font-mono"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60 font-mono"
                 />
               </div>
 
@@ -257,25 +257,25 @@ export const Technologies = () => {
                   type="checkbox"
                   id="techActive"
                   {...register('isActive')}
-                  className="w-4 h-4 rounded text-amber-500 border-borderCream"
+                  className="w-4 h-4 rounded text-blue-600 border-slate-200/80"
                 />
-                <label htmlFor="techActive" className="text-xs font-bold text-ink cursor-pointer">
+                <label htmlFor="techActive" className="text-xs font-bold text-slate-900 cursor-pointer">
                   Show on Homepage
                 </label>
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-borderCream">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200/80">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-xs font-semibold text-muted hover:text-ink"
+                  className="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
-                  className="px-5 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-ink text-xs font-bold"
+                  className="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 text-xs font-bold"
                 >
                   {saveMutation.isPending ? 'Saving...' : 'Save Technology'}
                 </button>

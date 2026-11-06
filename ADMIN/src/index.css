@@ -4,8 +4,8 @@
 
 @layer base {
   body {
-    background-color: #FBF7EE;
-    color: #0D0D0D;
+    background-color: #F8FAFC;
+    color: #0F172A;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 }
@@ -24,18 +24,21 @@
   font-weight: 800;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
+  color: #0F172A;
 }
 .tiptap h2 {
   font-size: 1.5rem;
   font-weight: 700;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
+  color: #0F172A;
 }
 .tiptap h3 {
   font-size: 1.25rem;
   font-weight: 700;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+  color: #0F172A;
 }
 .tiptap ul {
   list-style-type: disc;
@@ -48,14 +51,13 @@
   margin-bottom: 0.75rem;
 }
 .tiptap blockquote {
-  border-left: 4px solid #F5A93B;
+  border-left: 4px solid #0084FF;
   padding-left: 1rem;
   margin-left: 0;
   font-style: italic;
-  color: #5F5F5F;
+  color: #64748B;
 }
 .tiptap a {
-  color: #C27419;
+  color: #0084FF;
   text-decoration: underline;
 }
-

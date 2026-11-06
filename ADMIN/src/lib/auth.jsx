@@ -80,10 +80,10 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{ admin, setAdmin, loading, login, logout }}>
       {loading ? (
-        <div className="min-h-screen bg-[#FBF7EE] flex items-center justify-center">
+        <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-10 h-10 border-4 border-amber-500 border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm font-medium text-muted">Loading TenzoAds Admin...</p>
+            <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+            <p className="text-sm font-medium text-slate-500">Loading TenzoAds Admin...</p>
           </div>
         </div>
       ) : (

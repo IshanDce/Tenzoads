@@ -136,8 +136,8 @@ export const PostForm = () => {
   if (isEditing && isLoadingData) {
     return (
       <div className="py-24 flex items-center justify-center">
-        <div className="flex items-center gap-3 text-muted text-sm font-semibold">
-          <Loader2 className="w-6 h-6 animate-spin text-amber-500" />
+        <div className="flex items-center gap-3 text-slate-500 text-sm font-semibold">
+          <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
           Loading article data...
         </div>
       </div>
@@ -147,19 +147,19 @@ export const PostForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 animate-fade-in max-w-5xl">
       {/* Top Header */}
-      <div className="flex items-center justify-between border-b border-borderCream pb-5">
+      <div className="flex items-center justify-between border-b border-slate-200/80 pb-5">
         <div className="flex items-center gap-4">
           <Link
             to="/posts"
-            className="p-2 rounded-xl text-muted hover:text-ink hover:bg-neutral-100 transition-colors"
+            className="p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-extrabold text-ink tracking-tight">
+            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
               {isEditing ? 'Edit Article' : 'Write New Article'}
             </h1>
-            <p className="text-xs text-muted">
+            <p className="text-xs text-slate-500">
               Compose blog posts with headings, formatting, cover media, and SEO meta.
             </p>
           </div>
@@ -168,14 +168,14 @@ export const PostForm = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/posts"
-            className="px-4 py-2 rounded-xl border border-borderCream text-xs font-semibold text-muted hover:text-ink hover:bg-neutral-50 transition-colors"
+            className="px-4 py-2 rounded-xl border border-slate-200/80 text-xs font-semibold text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={saveMutation.isPending}
-            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-xs shadow-soft transition-all disabled:opacity-60"
+            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-xs shadow-soft transition-all disabled:opacity-60"
           >
             {saveMutation.isPending ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -191,14 +191,14 @@ export const PostForm = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Article Content (2 cols) */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Article Headline *</label>
+              <label className="text-xs font-bold text-slate-900">Article Headline *</label>
               <input
                 type="text"
                 {...register('title')}
                 placeholder="e.g. Flutter vs React Native in 2026: Which Should You Choose?"
-                className="w-full px-4 py-3 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-base font-bold focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-base font-bold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
               {errors.title && (
                 <p className="text-xs text-red-600">{errors.title.message}</p>
@@ -207,20 +207,20 @@ export const PostForm = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-ink">Slug</label>
+                <label className="text-xs font-bold text-slate-900">Slug</label>
                 <input
                   type="text"
                   {...register('slug')}
                   placeholder="flutter-vs-react-native-2026"
-                  className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 text-xs font-mono focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 text-xs font-mono focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-ink">Category *</label>
+                <label className="text-xs font-bold text-slate-900">Category *</label>
                 <select
                   {...register('category')}
-                  className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-white text-xs font-medium focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 >
                   {categories.map((c) => (
                     <option key={c} value={c}>
@@ -232,12 +232,12 @@ export const PostForm = () => {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Short Excerpt / Intro *</label>
+              <label className="text-xs font-bold text-slate-900">Short Excerpt / Intro *</label>
               <textarea
                 rows={3}
                 {...register('excerpt')}
                 placeholder="Brief summary that shows on the blog listing cards..."
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
               {errors.excerpt && (
                 <p className="text-xs text-red-600">{errors.excerpt.message}</p>
@@ -246,8 +246,8 @@ export const PostForm = () => {
           </div>
 
           {/* TipTap Rich Content Editor */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-3">
-            <label className="text-xs font-bold uppercase tracking-wider text-muted">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-3">
+            <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Article Content (Rich Text)
             </label>
             <RichTextEditor
@@ -258,28 +258,28 @@ export const PostForm = () => {
           </div>
 
           {/* SEO Meta Box */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-muted">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Search Engine Optimization (SEO)
             </h2>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Meta Title</label>
+              <label className="text-xs font-bold text-slate-900">Meta Title</label>
               <input
                 type="text"
                 {...register('seoTitle')}
                 placeholder="Custom title tag for Google search results"
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 text-xs focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 text-xs focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Meta Description</label>
+              <label className="text-xs font-bold text-slate-900">Meta Description</label>
               <textarea
                 rows={2}
                 {...register('seoDescription')}
                 placeholder="Search engine preview snippet..."
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-[#FBF7EE]/30 text-xs focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 text-xs focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
           </div>
@@ -287,16 +287,16 @@ export const PostForm = () => {
 
         {/* Sidebar Options (1 col) */}
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-muted">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Publishing Info
             </h2>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Status</label>
+              <label className="text-xs font-bold text-slate-900">Status</label>
               <select
                 {...register('status')}
-                className="w-full px-4 py-2.5 rounded-xl border border-borderCream bg-white text-xs font-semibold focus:outline-none focus:border-amber-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs font-semibold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
                 <option value="published">Published</option>
                 <option value="draft">Draft</option>
@@ -308,36 +308,36 @@ export const PostForm = () => {
                 type="checkbox"
                 id="postFeatured"
                 {...register('featured')}
-                className="w-4 h-4 rounded text-amber-500 focus:ring-amber-400 border-borderCream"
+                className="w-4 h-4 rounded text-blue-600 focus:ring-amber-400 border-slate-200/80"
               />
-              <label htmlFor="postFeatured" className="text-xs font-bold text-ink cursor-pointer">
+              <label htmlFor="postFeatured" className="text-xs font-bold text-slate-900 cursor-pointer">
                 Feature as Hero Card on Blog Page
               </label>
             </div>
 
             <div className="space-y-1.5 pt-2">
-              <label className="text-xs font-bold text-ink">Author Byline</label>
+              <label className="text-xs font-bold text-slate-900">Author Byline</label>
               <input
                 type="text"
                 {...register('author')}
                 placeholder="TenzoAds Team"
-                className="w-full px-4 py-2 rounded-xl border border-borderCream bg-[#FBF7EE]/30 text-xs"
+                className="w-full px-4 py-2 rounded-xl border border-slate-200/80 bg-slate-50/60 text-xs"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-ink">Estimated Read Time</label>
+              <label className="text-xs font-bold text-slate-900">Estimated Read Time</label>
               <input
                 type="text"
                 {...register('readTime')}
                 placeholder="7 min read"
-                className="w-full px-4 py-2 rounded-xl border border-borderCream bg-[#FBF7EE]/30 text-xs"
+                className="w-full px-4 py-2 rounded-xl border border-slate-200/80 bg-slate-50/60 text-xs"
               />
             </div>
           </div>
 
           {/* Cover Image Upload */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-4">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-4">
             <ImageUpload
               label="Cover Image (16:9)"
               value={coverImageValue}
@@ -347,15 +347,15 @@ export const PostForm = () => {
           </div>
 
           {/* Tags */}
-          <div className="bg-white p-6 rounded-2xl border border-borderCream shadow-soft space-y-3">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-soft space-y-3">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-bold uppercase tracking-wider text-muted">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
                 Article Tags
               </label>
               <button
                 type="button"
                 onClick={() => setTagsList([...tagsList, ''])}
-                className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1"
+                className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1"
               >
                 <Plus className="w-3.5 h-3.5" /> Add Tag
               </button>
@@ -372,13 +372,13 @@ export const PostForm = () => {
                       setTagsList(copy);
                     }}
                     placeholder="e.g. Flutter"
-                    className="flex-1 px-3 py-1.5 text-xs rounded-xl border border-borderCream bg-white"
+                    className="flex-1 px-3 py-1.5 text-xs rounded-xl border border-slate-200/80 bg-white"
                   />
                   {tagsList.length > 1 && (
                     <button
                       type="button"
                       onClick={() => setTagsList(tagsList.filter((_, i) => i !== idx))}
-                      className="p-1.5 text-muted hover:text-red-600 rounded-lg"
+                      className="p-1.5 text-slate-500 hover:text-red-600 rounded-lg"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>

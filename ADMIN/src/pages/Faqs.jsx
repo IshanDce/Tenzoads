@@ -117,18 +117,18 @@ export const Faqs = () => {
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight flex items-center gap-2">
-            <HelpCircle className="w-7 h-7 text-amber-500" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <HelpCircle className="w-7 h-7 text-blue-600" />
             Frequently Asked Questions
           </h1>
-          <p className="text-xs sm:text-sm text-muted mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Questions and answers appearing on the Homepage and Contact page.
           </p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-xs shadow-soft transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-xs shadow-soft transition-all"
         >
           <Plus className="w-4 h-4" />
           Add FAQ
@@ -136,7 +136,7 @@ export const Faqs = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-borderCream pb-2">
+      <div className="flex items-center gap-2 border-b border-slate-200/80 pb-2">
         {[
           { key: 'all', label: 'All FAQs' },
           { key: 'home', label: 'Homepage FAQs' },
@@ -147,8 +147,8 @@ export const Faqs = () => {
             onClick={() => setActiveTab(tab.key)}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === tab.key
-                ? 'bg-ink text-white shadow-xs'
-                : 'text-muted hover:text-ink hover:bg-neutral-100'
+                ? 'bg-blue-600 text-white shadow-xs shadow-blue-500/20'
+                : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             {tab.label}
@@ -159,46 +159,46 @@ export const Faqs = () => {
       {/* FAQs List */}
       <div className="space-y-3">
         {isLoading ? (
-          <div className="py-12 text-center text-muted">
-            <Loader2 className="w-6 h-6 animate-spin mx-auto text-amber-500 mb-2" />
+          <div className="py-12 text-center text-slate-500">
+            <Loader2 className="w-6 h-6 animate-spin mx-auto text-blue-600 mb-2" />
             Loading FAQs...
           </div>
         ) : faqs.length > 0 ? (
           faqs.map((f) => (
             <div
               key={f._id}
-              className="bg-white rounded-2xl p-5 border border-borderCream shadow-soft flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-amber-400 transition-colors"
+              className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-soft flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-blue-400 transition-colors"
             >
               <div className="space-y-1.5 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#FDF6E4] text-amber-800 border border-amber-200">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-50 text-blue-700 border border-blue-200">
                     {f.page} page
                   </span>
-                  <span className="text-xs font-mono text-muted">#{f.order}</span>
+                  <span className="text-xs font-mono text-slate-500">#{f.order}</span>
                   <button
                     onClick={() => toggleActiveMutation.mutate(f)}
                     className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                      f.isActive ? 'bg-emerald-100 text-emerald-800' : 'bg-neutral-100 text-neutral-600'
+                      f.isActive ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
                     }`}
                   >
                     {f.isActive ? 'Active' : 'Hidden'}
                   </button>
                 </div>
-                <h3 className="text-sm font-bold text-ink">{f.question}</h3>
-                <p className="text-xs text-muted leading-relaxed line-clamp-2">{f.answer}</p>
+                <h3 className="text-sm font-bold text-slate-900">{f.question}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{f.answer}</p>
               </div>
 
               <div className="flex items-center gap-2 self-end sm:self-center">
                 <button
                   onClick={() => handleOpenEdit(f)}
-                  className="p-1.5 text-muted hover:text-ink rounded-lg hover:bg-neutral-100"
+                  className="p-1.5 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-100"
                   title="Edit FAQ"
                 >
                   <Edit2 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setDeleteTarget(f)}
-                  className="p-1.5 text-muted hover:text-red-600 rounded-lg hover:bg-red-50"
+                  className="p-1.5 text-slate-500 hover:text-red-600 rounded-lg hover:bg-red-50"
                   title="Delete FAQ"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -207,7 +207,7 @@ export const Faqs = () => {
             </div>
           ))
         ) : (
-          <div className="py-12 text-center text-muted">No FAQs found for this section.</div>
+          <div className="py-12 text-center text-slate-500">No FAQs found for this section.</div>
         )}
       </div>
 
@@ -215,16 +215,16 @@ export const Faqs = () => {
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/40 backdrop-blur-xs">
           <div
-            className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-borderCream p-6 space-y-4 animate-scale-in"
+            className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 space-y-4 animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-borderCream pb-3">
-              <h2 className="text-base font-bold text-ink">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
+              <h2 className="text-base font-bold text-slate-900">
                 {editingItem ? 'Edit FAQ' : 'Add FAQ'}
               </h2>
               <button
                 onClick={() => setModalOpen(false)}
-                className="text-muted hover:text-ink p-1 rounded-lg"
+                className="text-slate-500 hover:text-slate-900 p-1 rounded-lg"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -232,31 +232,31 @@ export const Faqs = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-ink">Question *</label>
+                <label className="text-xs font-bold text-slate-900">Question *</label>
                 <input
                   type="text"
                   {...register('question', { required: true })}
                   placeholder="e.g. How much does it cost to build a mobile app?"
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-ink">Answer *</label>
+                <label className="text-xs font-bold text-slate-900">Answer *</label>
                 <textarea
                   rows={4}
                   {...register('answer', { required: true })}
                   placeholder="Detailed answer explaining the timeline or cost..."
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-ink">Target Page</label>
+                  <label className="text-xs font-bold text-slate-900">Target Page</label>
                   <select
                     {...register('page')}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-white"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-white"
                   >
                     <option value="home">Home Page</option>
                     <option value="contact">Contact Page</option>
@@ -264,11 +264,11 @@ export const Faqs = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-ink">Display Order</label>
+                  <label className="text-xs font-bold text-slate-900">Display Order</label>
                   <input
                     type="number"
                     {...register('order')}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60"
                   />
                 </div>
               </div>
@@ -278,25 +278,25 @@ export const Faqs = () => {
                   type="checkbox"
                   id="faqActive"
                   {...register('isActive')}
-                  className="w-4 h-4 rounded text-amber-500 border-borderCream"
+                  className="w-4 h-4 rounded text-blue-600 border-slate-200/80"
                 />
-                <label htmlFor="faqActive" className="text-xs font-bold text-ink cursor-pointer">
+                <label htmlFor="faqActive" className="text-xs font-bold text-slate-900 cursor-pointer">
                   Active (visible on website)
                 </label>
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-borderCream">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200/80">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-xs font-semibold text-muted hover:text-ink"
+                  className="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
-                  className="px-5 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-ink text-xs font-bold"
+                  className="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 text-xs font-bold"
                 >
                   {saveMutation.isPending ? 'Saving...' : 'Save FAQ'}
                 </button>

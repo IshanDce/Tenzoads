@@ -8,34 +8,18 @@ export const Logo = ({ className = '', inverted = false, showTagline = false }) 
       className={`inline-flex items-center gap-2.5 group focus:outline-none ${className}`}
       aria-label="TenzoAds Home"
     >
-      {/* 3D Isometric Hex Cube Icon */}
-      <div className="relative w-8 h-8 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+      {/* Modern Blue Rounded Badge with stylized "T" */}
+      <div className="relative w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:scale-105">
         <svg
-          viewBox="0 0 36 36"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full drop-shadow-sm"
+          className="w-5 h-5 text-white"
         >
-          {/* Top diamond facet */}
-          <polygon
-            points="18,3 31,10.5 18,18 5,10.5"
-            fill="#F5A93B"
-          />
-          {/* Left diamond facet */}
-          <polygon
-            points="5,10.5 18,18 18,33 5,25.5"
-            fill="#E8962A"
-          />
-          {/* Right diamond facet */}
-          <polygon
-            points="18,18 31,10.5 31,25.5 18,33"
-            fill="#0D0D0D"
-          />
-          {/* Subtle top facet highlight */}
-          <polygon
-            points="18,7 26,11.5 18,16 10,11.5"
-            fill="#FFE1A8"
-            opacity="0.45"
+          {/* Stylized Modern T */}
+          <path
+            d="M5 6.5C5 5.67157 5.67157 5 6.5 5H17.5C18.3284 5 19 5.67157 19 6.5C19 7.32843 18.3284 8 17.5 8H13.5V18C13.5 18.8284 12.8284 19.5 12 19.5C11.1716 19.5 10.5 18.8284 10.5 18V8H6.5C5.67157 8 5 7.32843 5 6.5Z"
+            fill="currentColor"
           />
         </svg>
       </div>
@@ -43,15 +27,15 @@ export const Logo = ({ className = '', inverted = false, showTagline = false }) 
       {/* Wordmark */}
       <div className="flex flex-col">
         <span
-          className={`font-extrabold text-xl md:text-2xl tracking-tight leading-none ${
-            inverted ? 'text-white' : 'text-ink'
+          className={`font-black text-xl md:text-2xl tracking-tight leading-none ${
+            inverted ? 'text-white' : 'text-slate-900'
           }`}
         >
-          Tenzo<span className={inverted ? 'text-amber' : 'text-ink'}>Ads</span>
+          Tenzo<span className={inverted ? 'text-blue-400' : 'text-slate-900'}>Ads</span>
         </span>
         {showTagline && (
-          <span className="text-[10px] tracking-wider uppercase text-muted font-semibold mt-0.5">
-            Digital Product Studio
+          <span className="text-[10px] font-semibold text-slate-400 tracking-wider uppercase mt-1">
+            IT Services & AI Studio
           </span>
         )}
       </div>
@@ -60,4 +44,3 @@ export const Logo = ({ className = '', inverted = false, showTagline = false }) 
 };
 
 export default Logo;
-

@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import TopBar from './components/layout/TopBar';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -9,6 +8,7 @@ import LoadingState from './components/common/LoadingState';
 // Lazy loaded page components
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
 const Blogs = lazy(() => import('./pages/Blogs'));
@@ -19,19 +19,19 @@ const LegalPage = lazy(() => import('./pages/LegalPage'));
 
 export const App = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-ink selection:bg-amber-300 selection:text-ink">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900">
       <ScrollToTop />
-      {/* 1. Global Top Bar */}
-      <TopBar />
-      {/* 2. Global Sticky Navbar */}
+      {/* 1. Global Sticky Navbar */}
       <Navbar />
 
-      {/* 3. Page Routes with Suspense */}
+      {/* 2. Page Routes with Suspense */}
       <main className="flex-1">
         <Suspense fallback={<LoadingState message="Loading page..." />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/service" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/portfolio/:slug" element={<ProjectDetail />} />
             <Route path="/blogs" element={<Blogs />} />
@@ -44,11 +44,10 @@ export const App = () => {
         </Suspense>
       </main>
 
-      {/* 4. Global Footer */}
+      {/* 3. Global Footer */}
       <Footer />
     </div>
   );
 };
 
 export default App;
-

@@ -27,8 +27,9 @@ export const siteConfig = {
   navLinks: [
     { label: 'Home', path: '/' },
     { label: 'About Us', path: '/about' },
+    { label: 'Service', path: '/services' },
     { label: 'Portfolio', path: '/portfolio' },
-    { label: 'Blogs', path: '/blogs' },
+    { label: 'Blog', path: '/blogs' },
   ],
   services: [
     { label: 'Mobile App Development', path: '/portfolio?category=Mobile+Apps' },

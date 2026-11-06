@@ -9,11 +9,11 @@ export const PostCard = ({ post }) => {
   const showCover = Boolean(formattedCover && !imgError);
 
   return (
-    <article className="group bg-white rounded-2xl border border-borderCream overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-soft-hover hover:border-amber-300 hover:-translate-y-1">
+    <article className="group bg-white rounded-2xl border border-slate-100 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1">
       <div>
         <Link to={`/blogs/${post.slug}`} className="block overflow-hidden">
           {showCover ? (
-            <div className="relative aspect-video w-full overflow-hidden bg-[#FBF7EE] border-b border-borderCream/60 flex items-center justify-center p-2.5">
+            <div className="relative aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center p-2.5">
               {/* Subtle ambient backdrop for edge filling */}
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-15 filter blur-md scale-110 pointer-events-none"
@@ -26,7 +26,7 @@ export const PostCard = ({ post }) => {
                 loading="lazy"
                 onError={() => setImgError(true)}
               />
-              <span className="absolute top-3 left-3 z-20 bg-amber text-ink text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm">
+              <span className="absolute top-3 left-3 z-20 bg-blue-600 text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm">
                 {post.categoryDisplay || post.category}
               </span>
             </div>
@@ -39,30 +39,30 @@ export const PostCard = ({ post }) => {
         </Link>
 
         <div className="p-6">
-          {/* Category label in amber caps */}
-          <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-600 block mb-2">
+          {/* Category label in blue caps */}
+          <span className="text-[11px] font-extrabold uppercase tracking-widest text-blue-600 block mb-2">
             {post.categoryDisplay || post.category}
           </span>
 
           {/* Title */}
-          <h3 className="text-lg sm:text-xl font-extrabold text-ink tracking-tight mb-2.5 leading-snug group-hover:text-amber transition-colors">
+          <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight mb-2.5 leading-snug group-hover:text-blue-600 transition-colors">
             <Link to={`/blogs/${post.slug}`}>{post.title}</Link>
           </h3>
 
           {/* Excerpt */}
-          <p className="text-sm text-muted leading-relaxed line-clamp-2 mb-4">
+          <p className="text-sm text-slate-600 leading-relaxed line-clamp-2 mb-4">
             {post.excerpt}
           </p>
         </div>
       </div>
 
       {/* Meta bottom bar */}
-      <div className="px-6 pb-6 pt-2 text-xs font-semibold text-neutral-400 border-t border-cream-light flex items-center justify-between">
+      <div className="px-6 pb-6 pt-2 text-xs font-semibold text-slate-400 border-t border-slate-100 flex items-center justify-between">
         <span>{post.author}</span>
         <div className="flex items-center gap-1.5">
           <span>{post.date}</span>
           <span>•</span>
-          <span className="text-ink font-bold">{post.readTime}</span>
+          <span className="text-slate-800 font-bold">{post.readTime}</span>
         </div>
       </div>
     </article>

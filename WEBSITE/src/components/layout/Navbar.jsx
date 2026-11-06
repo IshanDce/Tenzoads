@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Logo from '../common/Logo';
 import { siteConfig } from '../../config/site';
 
@@ -26,7 +26,7 @@ export const Navbar = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-borderCream/80 transition-all">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
         <Logo />
@@ -40,8 +40,8 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 `relative py-2 text-sm font-semibold transition-colors duration-200 ${
                   isActive
-                    ? 'text-ink after:content-[""] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2.5px] after:bg-amber after:rounded-full'
-                    : 'text-neutral-600 hover:text-ink'
+                    ? 'text-blue-600 after:content-[""] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-blue-600 after:rounded-full font-bold'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`
               }
             >
@@ -54,7 +54,7 @@ export const Navbar = () => {
         <div className="hidden md:flex items-center">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-ink bg-amber hover:bg-amber-hover rounded-full transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0"
+            className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0"
           >
             Get a Free Quote
           </Link>
@@ -64,7 +64,7 @@ export const Navbar = () => {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-xl text-ink hover:bg-cream-soft transition-colors focus:outline-none"
+          className="md:hidden p-2 rounded-xl text-slate-800 hover:bg-slate-100 transition-colors focus:outline-none"
           aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
           aria-expanded={mobileMenuOpen}
         >
@@ -74,38 +74,32 @@ export const Navbar = () => {
 
       {/* Mobile Slide-down Panel */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-50 overflow-y-auto px-6 py-8 flex flex-col justify-between border-t border-borderCream animate-in fade-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col space-y-4">
+        <div className="md:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-50 overflow-y-auto px-6 py-8 flex flex-col justify-between border-t border-slate-100 animate-in fade-in slide-in-from-top-4 duration-200">
+          <nav className="flex flex-col space-y-3">
             {siteConfig.navLinks.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `text-lg font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-between ${
+                  `text-base font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-between ${
                     isActive
-                      ? 'bg-cream text-ink border-l-4 border-amber'
-                      : 'text-neutral-700 hover:bg-cream-light'
+                      ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`
                 }
               >
                 <span>{item.label}</span>
-                <ArrowRight className="w-4 h-4 opacity-40" />
               </NavLink>
             ))}
           </nav>
 
-          <div className="pt-8 border-t border-borderCream flex flex-col gap-4">
+          <div className="pt-8 border-t border-slate-100 mt-auto">
             <Link
               to="/contact"
-              className="w-full text-center py-3.5 px-6 font-bold text-base text-ink bg-amber hover:bg-amber-hover rounded-full transition-all shadow-md active:scale-95"
+              className="w-full flex items-center justify-center py-3.5 px-6 rounded-full text-base font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-500/25 transition-all text-center"
             >
               Get a Free Quote
             </Link>
-
-            <div className="text-center text-xs text-muted mt-2">
-              <p>Email: {siteConfig.contact.email}</p>
-              <p className="mt-1">Phone: {siteConfig.contact.phone}</p>
-            </div>
           </div>
         </div>
       )}
@@ -114,4 +108,3 @@ export const Navbar = () => {
 };
 
 export default Navbar;
-

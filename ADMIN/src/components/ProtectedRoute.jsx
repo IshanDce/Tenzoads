@@ -9,8 +9,8 @@ export const ProtectedRoute = ({ requiredRole, children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FBF7EE] flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-amber-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -28,4 +28,3 @@ export const ProtectedRoute = ({ requiredRole, children }) => {
 };
 
 export default ProtectedRoute;
-

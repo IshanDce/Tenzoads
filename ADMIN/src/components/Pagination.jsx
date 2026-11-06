@@ -5,10 +5,10 @@ export const Pagination = ({ page, totalPages, onPageChange, totalItems }) => {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-3 px-2 border-t border-borderCream">
-      <div className="text-xs text-muted">
-        Showing page <span className="font-semibold text-ink">{page}</span> of{' '}
-        <span className="font-semibold text-ink">{totalPages}</span>
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-3 px-2 border-t border-slate-100">
+      <div className="text-xs text-slate-500">
+        Showing page <span className="font-semibold text-slate-900">{page}</span> of{' '}
+        <span className="font-semibold text-slate-900">{totalPages}</span>
         {totalItems !== undefined && (
           <span> ({totalItems} total items)</span>
         )}
@@ -19,7 +19,7 @@ export const Pagination = ({ page, totalPages, onPageChange, totalItems }) => {
           type="button"
           onClick={() => onPageChange(page - 1)}
           disabled={page <= 1}
-          className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold rounded-lg border border-borderCream bg-white text-ink hover:bg-neutral-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Prev</span>
@@ -45,8 +45,8 @@ export const Pagination = ({ page, totalPages, onPageChange, totalItems }) => {
                 onClick={() => onPageChange(pageNum)}
                 className={`w-7 h-7 text-xs font-semibold rounded-lg transition-all ${
                   page === pageNum
-                    ? 'bg-amber-500 text-ink shadow-sm'
-                    : 'text-muted hover:text-ink hover:bg-neutral-100'
+                    ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
                 {pageNum}
@@ -59,7 +59,7 @@ export const Pagination = ({ page, totalPages, onPageChange, totalItems }) => {
           type="button"
           onClick={() => onPageChange(page + 1)}
           disabled={page >= totalPages}
-          className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold rounded-lg border border-borderCream bg-white text-ink hover:bg-neutral-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <span>Next</span>
           <ChevronRight className="w-4 h-4" />
@@ -70,4 +70,3 @@ export const Pagination = ({ page, totalPages, onPageChange, totalItems }) => {
 };
 
 export default Pagination;
-

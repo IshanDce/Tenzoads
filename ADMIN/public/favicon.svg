@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-  <!-- Isometric Hex Cube -->
-  <polygon points="20,4 34,12 20,20 6,12" fill="#F5A93B" />
-  <polygon points="6,12 20,20 20,36 6,28" fill="#E8962A" />
-  <polygon points="20,20 34,12 34,28 20,36" fill="#0D0D0D" />
-  <!-- Inner geometric cube accent -->
-  <polygon points="20,10 27,14 20,18 13,14" fill="#FCE5B5" opacity="0.6" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Modern TenzoAds Electric Blue Rounded Square -->
+  <rect width="24" height="24" rx="6.5" fill="#0084FF" />
+  <!-- Stylized White T -->
+  <path
+    d="M5 6.5C5 5.67157 5.67157 5 6.5 5H17.5C18.3284 5 19 5.67157 19 6.5C19 7.32843 18.3284 8 17.5 8H13.5V18C13.5 18.8284 12.8284 19.5 12 19.5C11.1716 19.5 10.5 18.8284 10.5 18V8H6.5C5.67157 8 5 7.32843 5 6.5Z"
+    fill="#FFFFFF"
+  />
 </svg>
-

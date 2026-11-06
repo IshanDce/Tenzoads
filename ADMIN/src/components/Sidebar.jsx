@@ -60,10 +60,10 @@ export const Sidebar = ({ isOpen, onClose }) => {
         to={item.path}
         onClick={onClose}
         className={({ isActive }) =>
-          `flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+          `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
             isActive
-              ? 'bg-amber-100/70 text-ink border-l-4 border-amber-500 font-bold shadow-xs'
-              : 'text-muted hover:text-ink hover:bg-neutral-100'
+              ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600 font-bold shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
           }`
         }
       >
@@ -79,41 +79,45 @@ export const Sidebar = ({ isOpen, onClose }) => {
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 z-40 bg-ink/40 backdrop-blur-xs lg:hidden"
+          className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-xs lg:hidden"
         />
       )}
 
       {/* Sidebar container */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-40 w-64 bg-white border-r border-borderCream flex flex-col transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 w-64 bg-white border-r border-slate-200/80 flex flex-col transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
         }`}
       >
         {/* Brand Header */}
-        <div className="p-5 flex items-center justify-between border-b border-borderCream">
-          <NavLink to="/dashboard" className="flex items-center gap-2.5">
-            {/* Hexagon Logo */}
-            <div className="w-8 h-8 rounded-lg bg-ink flex items-center justify-center text-amber-500 shadow-sm">
+        <div className="p-5 flex items-center justify-between border-b border-slate-100">
+          <NavLink to="/dashboard" className="flex items-center gap-2.5 group">
+            {/* Modern Blue Rounded Badge with stylized "T" */}
+            <div className="relative w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:scale-105">
               <svg
                 viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-5 h-5 text-amber-500"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 text-white"
               >
-                <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5" />
+                <path
+                  d="M5 6.5C5 5.67157 5.67157 5 6.5 5H17.5C18.3284 5 19 5.67157 19 6.5C19 7.32843 18.3284 8 17.5 8H13.5V18C13.5 18.8284 12.8284 19.5 12 19.5C11.1716 19.5 10.5 18.8284 10.5 18V8H6.5C5.67157 8 5 7.32843 5 6.5Z"
+                  fill="currentColor"
+                />
               </svg>
             </div>
-            <div>
-              <span className="font-extrabold text-base tracking-tight text-ink">
-                Tenzo<span className="text-amber-500">Ads</span>
+            <div className="flex items-center gap-2">
+              <span className="font-extrabold text-base tracking-tight text-slate-900">
+                Tenzo<span className="text-blue-600">Ads</span>
               </span>
-              <span className="ml-2 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-amber-100 text-amber-800">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200/60">
                 Admin
               </span>
             </div>
           </NavLink>
           <button
             onClick={onClose}
-            className="lg:hidden text-muted hover:text-ink p-1 rounded-lg hover:bg-neutral-100"
+            className="lg:hidden text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100"
           >
             <X className="w-5 h-5" />
           </button>
@@ -122,7 +126,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
         {/* Navigation items */}
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-6">
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-muted/80 px-3 mb-2">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 mb-2">
               Main
             </div>
             <div className="space-y-1">
@@ -133,7 +137,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
           </div>
 
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-muted/80 px-3 mb-2">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 mb-2">
               Website Content
             </div>
             <div className="space-y-1">
@@ -144,7 +148,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
           </div>
 
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-muted/80 px-3 mb-2">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 mb-2">
               System
             </div>
             <div className="space-y-1">
@@ -156,18 +160,18 @@ export const Sidebar = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer info & website link */}
-        <div className="p-4 border-t border-borderCream bg-[#FBF7EE]/60 space-y-2">
+        <div className="p-4 border-t border-slate-100 bg-slate-50/70 space-y-2">
           <a
             href="http://localhost:5173"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-ink bg-white border border-borderCream hover:border-amber-500 transition-colors shadow-2xs"
+            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-800 bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-600 transition-all shadow-xs"
           >
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Live Website
             </span>
-            <ExternalLink className="w-3.5 h-3.5 text-muted" />
+            <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
           </a>
         </div>
       </aside>
@@ -176,4 +180,3 @@ export const Sidebar = ({ isOpen, onClose }) => {
 };
 
 export default Sidebar;
-

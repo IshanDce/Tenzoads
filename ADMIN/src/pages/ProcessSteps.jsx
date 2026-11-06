@@ -98,18 +98,18 @@ export const ProcessSteps = () => {
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight flex items-center gap-2">
-            <GitBranch className="w-7 h-7 text-amber-500" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <GitBranch className="w-7 h-7 text-blue-600" />
             "How We Work" Process Steps
           </h1>
-          <p className="text-xs sm:text-sm text-muted mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Numbered stages shown on the Homepage (Discover, Design, Develop, Launch).
           </p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-ink font-bold text-xs shadow-soft transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 font-bold text-xs shadow-soft transition-all"
         >
           <Plus className="w-4 h-4" />
           Add Step
@@ -118,37 +118,37 @@ export const ProcessSteps = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {isLoading ? (
-          <div className="col-span-full py-12 text-center text-muted">
-            <Loader2 className="w-6 h-6 animate-spin mx-auto text-amber-500 mb-2" />
+          <div className="col-span-full py-12 text-center text-slate-500">
+            <Loader2 className="w-6 h-6 animate-spin mx-auto text-blue-600 mb-2" />
             Loading process steps...
           </div>
         ) : steps.length > 0 ? (
           steps.map((st) => (
             <div
               key={st._id}
-              className="bg-white rounded-2xl p-6 border border-borderCream shadow-soft flex flex-col justify-between space-y-4 hover:border-amber-400 transition-colors relative"
+              className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-soft flex flex-col justify-between space-y-4 hover:border-blue-400 transition-colors relative"
             >
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-full bg-amber-500 text-ink font-extrabold text-base flex items-center justify-center shadow-xs">
+                <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-extrabold text-base flex items-center justify-center shadow-xs">
                   {st.number ?? st.order}
                 </div>
-                <h3 className="text-base font-bold text-ink">{st.title}</h3>
-                <p className="text-xs text-muted leading-relaxed">{st.description}</p>
+                <h3 className="text-base font-bold text-slate-900">{st.title}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{st.description}</p>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-borderCream">
-                <span className="text-[11px] font-mono text-muted">Order: #{st.order}</span>
+              <div className="flex items-center justify-between pt-3 border-t border-slate-200/80">
+                <span className="text-[11px] font-mono text-slate-500">Order: #{st.order}</span>
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => handleOpenEdit(st)}
-                    className="p-1.5 text-muted hover:text-ink rounded-lg hover:bg-neutral-100"
+                    className="p-1.5 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-100"
                     title="Edit Step"
                   >
                     <Edit2 className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setDeleteTarget(st)}
-                    className="p-1.5 text-muted hover:text-red-600 rounded-lg hover:bg-red-50"
+                    className="p-1.5 text-slate-500 hover:text-red-600 rounded-lg hover:bg-red-50"
                     title="Delete Step"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -158,7 +158,7 @@ export const ProcessSteps = () => {
             </div>
           ))
         ) : (
-          <div className="col-span-full py-12 text-center text-muted">
+          <div className="col-span-full py-12 text-center text-slate-500">
             No process steps configured.
           </div>
         )}
@@ -168,16 +168,16 @@ export const ProcessSteps = () => {
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/40 backdrop-blur-xs">
           <div
-            className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-borderCream p-6 space-y-4 animate-scale-in"
+            className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 space-y-4 animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-borderCream pb-3">
-              <h2 className="text-base font-bold text-ink">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
+              <h2 className="text-base font-bold text-slate-900">
                 {editingItem ? 'Edit Step' : 'Add Process Step'}
               </h2>
               <button
                 onClick={() => setModalOpen(false)}
-                className="text-muted hover:text-ink p-1 rounded-lg"
+                className="text-slate-500 hover:text-slate-900 p-1 rounded-lg"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -186,56 +186,56 @@ export const ProcessSteps = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-ink">Step Number *</label>
+                  <label className="text-xs font-bold text-slate-900">Step Number *</label>
                   <input
                     type="number"
                     {...register('number', { required: true })}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30 font-bold"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60 font-bold"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-ink">Display Order</label>
+                  <label className="text-xs font-bold text-slate-900">Display Order</label>
                   <input
                     type="number"
                     {...register('order')}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-ink">Title *</label>
+                <label className="text-xs font-bold text-slate-900">Title *</label>
                 <input
                   type="text"
                   {...register('title', { required: true })}
                   placeholder="e.g. Discover & Blueprint"
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white focus:outline-none focus:border-amber-500 font-bold"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 font-bold"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-ink">Description *</label>
+                <label className="text-xs font-bold text-slate-900">Description *</label>
                 <textarea
                   rows={3}
                   {...register('description', { required: true })}
                   placeholder="Step description..."
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-borderCream bg-[#FBF7EE]/30 focus:bg-white focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200/80 bg-slate-50/60 focus:bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-borderCream">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200/80">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-xs font-semibold text-muted hover:text-ink"
+                  className="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
-                  className="px-5 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-ink text-xs font-bold"
+                  className="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 text-xs font-bold"
                 >
                   {saveMutation.isPending ? 'Saving...' : 'Save Step'}
                 </button>

@@ -64,13 +64,13 @@ export const ImageUpload = ({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-semibold uppercase tracking-wider text-muted">
+        <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">
           {label}
         </label>
         <button
           type="button"
           onClick={() => setShowUrlInput(!showUrlInput)}
-          className="text-xs text-amber-700 hover:text-amber-800 font-medium flex items-center gap-1 transition-colors"
+          className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 transition-colors"
         >
           <Link className="w-3.5 h-3.5" />
           {showUrlInput ? 'Upload file instead' : 'Enter URL instead'}
@@ -84,23 +84,23 @@ export const ImageUpload = ({
             value={manualUrl}
             onChange={(e) => setManualUrl(e.target.value)}
             placeholder="https://example.com/image.png"
-            className="flex-1 px-3 py-2 text-sm rounded-xl border border-borderCream bg-white focus:outline-none focus:border-amber-500"
+            className="flex-1 px-3 py-2 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
           />
           <button
             type="button"
             onClick={handleManualUrlSubmit}
-            className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-ink text-sm font-semibold rounded-xl"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors shadow-xs"
           >
             Apply
           </button>
         </div>
       ) : value ? (
-        <div className="relative group rounded-2xl overflow-hidden border border-borderCream bg-[#FBF7EE] h-60 w-full flex items-center justify-center p-3 select-none">
+        <div className="relative group rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 h-60 w-full flex items-center justify-center p-3 select-none">
           {imgError ? (
-            <div className="flex flex-col items-center justify-center p-6 text-center text-neutral-400">
-              <ImageIcon className="w-8 h-8 mb-2 text-neutral-300" />
-              <p className="text-xs font-semibold text-neutral-600">Image preview unavailable</p>
-              <p className="text-[10px] text-neutral-400 break-all max-w-xs mt-1">{value}</p>
+            <div className="flex flex-col items-center justify-center p-6 text-center text-slate-400">
+              <ImageIcon className="w-8 h-8 mb-2 text-slate-300" />
+              <p className="text-xs font-semibold text-slate-600">Image preview unavailable</p>
+              <p className="text-[10px] text-slate-400 break-all max-w-xs mt-1">{value}</p>
             </div>
           ) : (
             <>
@@ -118,11 +118,11 @@ export const ImageUpload = ({
             </>
           )}
 
-          <div className="absolute inset-0 z-20 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+          <div className="absolute inset-0 z-20 bg-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-2xs">
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="p-2 bg-white text-ink rounded-xl shadow-md hover:bg-amber-400 transition-colors text-xs font-semibold flex items-center gap-1"
+              className="p-2 bg-white text-slate-800 rounded-xl shadow-md hover:bg-blue-50 hover:text-blue-600 transition-colors text-xs font-semibold flex items-center gap-1"
             >
               <UploadCloud className="w-4 h-4" /> Replace
             </button>
@@ -141,22 +141,22 @@ export const ImageUpload = ({
       ) : (
         <div
           onClick={() => fileInputRef.current?.click()}
-          className="border-2 border-dashed border-borderCream hover:border-amber-500 rounded-2xl p-6 text-center cursor-pointer transition-colors bg-white/60 hover:bg-amber-50/20 group"
+          className="border-2 border-dashed border-slate-200 hover:border-blue-500 rounded-2xl p-6 text-center cursor-pointer transition-colors bg-white/80 hover:bg-blue-50/20 group"
         >
           {uploading ? (
-            <div className="flex flex-col items-center gap-2 text-amber-600 py-4">
+            <div className="flex flex-col items-center gap-2 text-blue-600 py-4">
               <Loader2 className="w-8 h-8 animate-spin" />
               <p className="text-xs font-semibold">Uploading to ImageKit...</p>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2 py-2">
-              <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
                 <UploadCloud className="w-6 h-6" />
               </div>
-              <p className="text-sm font-semibold text-ink">
-                Click to upload <span className="font-normal text-muted">or drag & drop</span>
+              <p className="text-sm font-semibold text-slate-800">
+                Click to upload <span className="font-normal text-slate-500">or drag & drop</span>
               </p>
-              <p className="text-xs text-muted">{helperText}</p>
+              <p className="text-xs text-slate-400">{helperText}</p>
             </div>
           )}
         </div>
